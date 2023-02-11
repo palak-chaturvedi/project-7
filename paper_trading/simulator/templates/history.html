@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Stock Symbol</th>
+      <th>Shares</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for trade in trades %}
+    <tr>
+      <td>{{ trade.date }}</td>
+      <td>{{ trade.stock.symbol }}</td>
+      <td>{{ trade.shares }}</td>
+      <td>{{ trade.price }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
