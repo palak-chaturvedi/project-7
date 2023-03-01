@@ -7,11 +7,11 @@ from django.core.mail import EmailMessage
 
 def HomePage(request):
 
-    return render(request, "HomeApp/home.html")
+    return render(request, "home.html")
 
 
 def About_us(request):
-    return render(request, "HomeApp/About_us.html")
+    return HttpResponse("Terms and conditions")
 
 
 def Contact_us(request):

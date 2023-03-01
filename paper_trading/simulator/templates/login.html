@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="login">
+            <form action="{% url 'client_homepage' %}" onsubmit="return validate()" method='post'>
+              {% csrf_token %}
+
+                <p class="headlogin">Login : Client</p>
+                <a href="{% url 'clientNewuser' %}" class="link"><span style="color:black"><u>Register as New</u></span></a>
+                <div class="btttn">
+                    <p>email</p><input type="email" placeholder="email" name="email">
+                    <p>Password</p><input type="password" placeholder="password" name="password">
+                    <button id="Login" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+
+</body>
+</html>

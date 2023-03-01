@@ -5,15 +5,17 @@
   </head>
   <body>
     <h1>Create User</h1>
-    <form method="post">
-      {% csrf_token %}
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name"><br><br>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email"><br><br>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password"><br><br>
-      <input type="submit" value="Create User">
-    </form>
+
+            <form action="{% url 'clientNewuser' %}" onsubmit="return validate()" enctype="multipart/form-data"
+                method='post'>{% csrf_token %}
+
+                <div class="btttn">
+                    <p>Name</p><input type="text" placeholder="full name" name="name">
+                    <p>Phone number</p><input type="number" placeholder="phone number" name="phonenumber">
+                    <p>email</p><input type="email" placeholder="email" name="email">
+                    <p>Password</p><input type="password" placeholder="password" name="password">
+                    <button id="Register" type="submit">Register</button>
+                </div>
+            </form>
   </body>
 </html>

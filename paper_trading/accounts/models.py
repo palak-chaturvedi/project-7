@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+
+
 # Create your models here.
 class MyAccountManager(BaseUserManager):
     def create_user(self, name, email, phone_number, password=None):
@@ -10,9 +12,9 @@ class MyAccountManager(BaseUserManager):
             raise ValueError('User must have an username')
 
         user = self.model(
-            email = self.normalize_email(email),
-            name = name,
-            phone_number= phone_number
+            email=self.normalize_email(email),
+            name=name,
+            phone_number=phone_number
         )
 
         user.set_password(password)
@@ -21,10 +23,10 @@ class MyAccountManager(BaseUserManager):
 
     def create_superuser(self, name, email, phone_number, password):
         user = self.create_user(
-            email = self.normalize_email(email),
-            name = name,
-            password = password,
-            phone_number= phone_number
+            email=self.normalize_email(email),
+            name=name,
+            password=password,
+            phone_number=phone_number
         )
         user.is_admin = True
         user.is_active = True
@@ -34,19 +36,23 @@ class MyAccountManager(BaseUserManager):
         return user
 
 
-
 class Account(AbstractBaseUser):
-    name      = models.CharField(max_length=50)
-    phone_number    = models.CharField(max_length=50)
-    email           = models.EmailField(max_length=100, unique=True)
-    
+    name = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=50,default=0)
+    email = models.EmailField(max_length=100, unique=True)
+    stock = models.CharField(max_length=50, default="")
+    stock_value = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    # shares = models.PositiveIntegerField()
+    # cost_basis = models.DecimalField(max_digits=10, decimal_places=2)
+    cash = models.DecimalField(max_digits=10, decimal_places=2, default=10)
+
     # required
-    date_joined     = models.DateTimeField(auto_now_add=True)
-    last_login      = models.DateTimeField(auto_now_add=True)
-    is_admin        = models.BooleanField(default=False)
-    is_staff        = models.BooleanField(default=False)
-    is_active        = models.BooleanField(default=False)
-    is_superadmin        = models.BooleanField(default=False)
+    date_joined = models.DateTimeField(auto_now_add=True)
+    last_login = models.DateTimeField(auto_now_add=True)
+    is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
+    is_superadmin = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name', 'phone_number']
