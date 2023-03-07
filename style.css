@@ -162,6 +162,48 @@ body {
 	background: var(--light-orange);
 	color: var(--orange);
 }
+
+.dropdown {
+	display: inline-block;
+	position: relative;
+	min-width:140px;
+	height:30px;
+	background-color:var(--light-yellow);
+    color: var(--yellow);
+	
+  }
+
+  .bt-dpd {
+	min-width:140px;
+	height:30px;
+	background-color:var(--light-yellow);
+    color: var(--yellow);
+	border-color: var(--light-yellow);
+	cursor:pointer;
+  }
+  .dropdown-content {
+	display: none;
+	position: absolute;
+	width: 100%;
+	overflow: auto;
+	box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+  }
+  .dropdown:hover .dropdown-content {
+	display: block;
+  }
+  .dropdown-content a {
+	display: block;
+	color: #7fd8a3;
+	background-color: #F9F9F9;
+	padding: 5px;
+	text-decoration: none;
+  }
+  .dropdown-content a:hover {
+	color: #f9fbfb;
+	background-color: #3bbfd3;
+  }
+
+
 #content main .box-info li .text h3 {
 	font-size: 24px;
 	font-weight: 600;
