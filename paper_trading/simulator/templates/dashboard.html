@@ -11,20 +11,23 @@
       <tr>
         <th>Stock Symbol</th>
         <th>Number of Shares</th>
-        <th>Current Price</th>
-        <th>Total Value</th>
       </tr>
       {% for stock in stocks %}
         <tr>
           <td>{{ stock.symbol }}</td>
-          <td>{{ stock.shares }}</td>
-          <td>{{ stock.price }}</td>
-          <td>{{ stock.shares * stock.price }}</td>
+          <td>{{ stock.no_of_shares }}</td>
+
         </tr>
       {% endfor %}
     </table>
-    <h2>Cash Balance: {{ user.balance }}</h2>
-    <a href="{% url 'trade' %}">Trade Stocks</a>
-    <a href="{% url 'history' %}">Trade History</a>
+    <h2>Cash Balance: {{ userdeets.cash }}</h2>
+    <h2>User Profit: {{ userdeets.profit }}</h2>
+    <a href="{% url 'Stocks' %}">Trade Stocks</a>
+    <a href="{% url 'History' %}">Trade History</a>
+    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'edit_profile' %}">edit_profile</a>
+    <a href="{% url 'change_password' %}">change_password</a>
+    <a href="{% url 'viewUsers' %}">View Other Users</a>
+
   </body>
 </html>

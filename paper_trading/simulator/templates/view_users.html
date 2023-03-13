@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+{% load myfilters %}
+
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/basic.css' %}">
+    <title>{% block title %} {% endblock %}</title>
+    <style>
+
+    </style>
+    {% block css %}
+    {% endblock %}
+
+</head>
+<style>
+  .red {
+    color: red;
+  }
+
+  .green {
+    color: green;
+  }
+
+  .table-container {
+    overflow-x: scroll;
+  }
+</style>
+{% block body %}
+<div class="container">
+  <h1>ALL USERS</h1>
+  <br>
+        <div class="container">
+            <form action="{% url 'viewUsers' %}" onsubmit="return validate()" enctype="multipart/form-data"
+                method='post'>{% csrf_token %}
+
+
+
+                  <select class="form-control" id="username" name="username" required>
+                                              {% for  user in users %}
+
+                      <option value="{{user.username}}">{{user.username}}</option>
+                                                      {% endfor %}
+
+                  </select>
+
+
+                <div class="bn">
+                    <button type="submit">search</button>
+                </div>
+            </form>
+        </div>
+  <div class="table-container">
+<table class="table">
+      <thead>
+        <tr>
+          <th scope="col">SNo.</th>
+          <th scope="col">Username</th>
+          <th scope="col">Profit</th>
+          <th scope="col">Stock Value</th>
+          <th scope="col">Cash</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td>{{user.username}}</td>
+          <td id="{{key}}_price">{{ user.profit|floatformat:4 }}</td>
+          <td id="{{key}}_prevprice">{{ user.stock_value|floatformat:4 }}</td>
+          <td id="{{key}}_open">{{ user.cash }}</td>
+            <td id="{{key}}_track">
+                <a href="{% url 'Track' username=user.username  %}">
+                    <button class="Profile_button">
+                        Track Purchases
+                    </button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <br>
+</div>
+</div>
+</div>
+{% endblock %}
+

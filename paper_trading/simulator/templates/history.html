@@ -1,20 +1,32 @@
 <table>
   <thead>
     <tr>
+      <th>Username</th>
       <th>Date</th>
       <th>Stock Symbol</th>
       <th>Shares</th>
       <th>Price</th>
+      <th>Type</th>
     </tr>
   </thead>
   <tbody>
     {% for trade in trades %}
     <tr>
+      <td> {{trade.username }}</td>
       <td>{{ trade.date }}</td>
-      <td>{{ trade.stock.symbol }}</td>
+      <td>{{ trade.stock }}</td>
       <td>{{ trade.shares }}</td>
-      <td>{{ trade.price }}</td>
+      <td>{{ trade.cost }}</td>
+      <td>{{ trade.type }}</td>
     </tr>
+
+
     {% endfor %}
+
+      <a href="{% url 'viewUsers' %}">
+                    <button class="Profile_button">
+                        Return
+                    </button>
+                </a>
   </tbody>
 </table>

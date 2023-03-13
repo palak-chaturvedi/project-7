@@ -1,29 +1,27 @@
 # from django.contrib.auth.models import AbstractUser
-from django.contrib.auth.models import User
 from django.db import models
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
+
 
 # from django.db import models
 
 # User = get_user_model()
 class UserDetails(models.Model):
-    name = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=128)
-    PhoneNumber = models.IntegerField()
-    stock = models.CharField(max_length=50, default="")
+    username = models.CharField(max_length=50, null=False)
     stock_value = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     # shares = models.PositiveIntegerField()
     # cost_basis = models.DecimalField(max_digits=10, decimal_places=2)
-    cash = models.DecimalField(max_digits=10, decimal_places=2, default=10)
+    cash = models.DecimalField(max_digits=10, decimal_places=2, default=1000000)
+    profit = models.DecimalField(max_digits=5, decimal_places=2, default=0)
 
     def __str__(self):
-        return self.name
+        return self.cash
 
 class Stock(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE,default=None)
+    username = models.CharField(max_length=50, null=False, default="kk")
     symbol = models.CharField(max_length=10, unique=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    # price = models.DecimalField(max_digits=10, decimal_places=2)
+    no_of_shares = models.IntegerField(default=0)
 
     def __str__(self):
         return self.symbol
@@ -43,7 +41,7 @@ class Stock(models.Model):
 
 
 class Trade(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    username = models.CharField(max_length=50,default="kk")
     stock = models.CharField(max_length=50, default="")
     shares = models.PositiveIntegerField()
     date = models.DateTimeField(auto_now_add=True)
@@ -51,4 +49,4 @@ class Trade(models.Model):
     type = models.CharField(max_length=4, default="null")
 
     def __str__(self):
-        return f"{self.user} - {self.stock} - {self.shares} - {self.date}"
+        return f"{self.username} - {self.stock} - {self.shares} - {self.date}"

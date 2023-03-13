@@ -20,46 +20,37 @@ from django.utils.text import slugify
 from django.core.exceptions import ObjectDoesNotExist
 
 from django.contrib import messages, auth
+from django.contrib.auth import authenticate,login,logout
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 
-# from django.contrib.sites.shortcuts import get_current_site
-# from django.template.loader import render_to_string
-# from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-# from django.utils.encoding import force_bytes
-# from django.contrib.auth.tokens import default_token_generator
-# from django.core.mail import EmailMessage
-from accounts.models import *
-
-
-@login_required(login_url = 'client_homepage')
+@login_required(login_url = 'login')
 def dashboard(request):
-    print(request.user.email)
-
-    user = Account.objects.get(email=request.user.email)
-    print(user.cash)
-    # print("kkkkkkkkkkkkkkkkkkk")
-    print(user.name)
-    # trades = Trade.objects.filter(user=request.user)
-    # stocks = []
-    # for trade in trades:
-    #     stocks.append(trade.stock)
-    # context = {
-    #     'stocks': stocks
-    # }
-    # return render(request, 'dashboard.html', context)
-
-
-
-# @login_required(login_url = 'client_homepage')
+    print(request)
+    print("hello")
+    print(request.user.username)
+    userdeets = UserDetails.objects.get(username = request.user.username)
+    print(userdeets.cash)
+    stocks = Stock.objects.filter(username = request.user.username)
+    print(stocks)
+    total_cash = 0
+    for stock in stocks:
+        price = get_quote_table(str(stock.symbol))['Open'] * int(stock.no_of_shares)
+        total_cash += price
+    userdeets.profit = round((decimal.Decimal(total_cash) + userdeets.cash - decimal.Decimal(1000000)) / 10000,2)
+    userdeets.stock_value = decimal.Decimal(total_cash)
+    userdeets.save()
+    context = {
+        'stocks': stocks,
+        'userdeets':userdeets
+    }
+    return render(request, 'dashboard.html', context)
+#
+#
+#
+#
+@login_required(login_url = 'login')
 def trade(request,stockname):
-    print(stockname)
-    # stocks = Stock.objects.create(symbol="AAPL",price=19)
-    # stocks.save()
-    # stocks2 = Stock.objects.create(symbol="GOOGL",price=20)
-    # stocks2.save()
-
-    # list = Stock.objects.ge
 
 
     # check if request method is POST
@@ -75,11 +66,22 @@ def trade(request,stockname):
 
         print(trade_type)
         symbol = stockname
+        prev_share = 0
+        try:
+            stocks = Stock.objects.filter(username=request.user.username, symbol=symbol)
+            stock = stocks[0]
+            prev_share = stock.no_of_shares
+            flag = True
 
-        # retrieve user's portfolio
-        # portfolio = Account.objects.get(user=request.user)
+        except:
+            flag = False
+
+
+
+
+
         print(request.user.email)
-        user = Account.objects.get(email=request.user.email)
+        user = UserDetails.objects.get(username=request.user.username)
         # return HttpResponse(str(user)+symbol+ trade_type+str(shares))
         # update user's portfolio based on trade type
         print(user.cash)
@@ -91,7 +93,7 @@ def trade(request,stockname):
             # check if user has enough cash to make the trade
             if user.cash < cost:
                 # raise an error if not enough cash
-                # messages.error(request, 'Not enough cash to make the trade.')
+                messages.error(request, 'Not enough cash to make the trade.')
                 return render(request, 'trade.html')
             else:
                 # deduct cost from user's cash
@@ -99,111 +101,65 @@ def trade(request,stockname):
                 # update user's portfolio
                 # user.stocks.update_or_create(symbol=symbol, defaults={'shares': shares})
                 # create a new trade
-                Trade.objects.create(user=request.user, stock=symbol, shares=shares, type='buy', cost=cost)
+
+                Trade.objects.create(username = request.user.username, stock=symbol, shares=shares, type='buy', cost=cost)
                 user.save()
+
+                updated_shares = int(shares) + prev_share
+
+
+                obj, created = Stock.objects.update_or_create(username = request.user.username,
+                                    symbol=symbol,defaults={'no_of_shares': updated_shares},
+                                )
+                obj.save()
+
+
         else:
             # trade type is sell
             # retrieve the stock from the user's portfolio
-            stock = user.stocks.get(symbol=symbol)
             # check if user has enough shares to sell
-            if stock.shares < int(shares):
+            if prev_share < int(shares):
                 # raise an error if not enough shares
-                # messages.error(request, 'Not enough shares to sell.')
+                messages.error(request, 'Not enough shares to sell.')
                 return render(request, 'trade.html')
             else:
                 # update the user's portfolio
-                stock.shares -= int(shares)
-                stock.save()
+                data = get_quote_table(symbol)
+                price = data['Open']
+                cost = price * int(shares)
+                updated_shares = prev_share - int(shares)
                 # add the sale value to user's cash
-                user.cash += stock.price * int(shares)
+                user.cash += decimal.Decimal(cost)
                 user.save()
                 # create a new trade
-                trade = Trade.objects.create(user=request.user, symbol=symbol, shares=shares, type='sell',
-                                     cost=stock.price * int(shares))
+                Trade.objects.create(username=request.user.username, stock=symbol, shares=shares, type='sell', cost=cost)
+
+                obj, created = Stock.objects.update_or_create(username = request.user.username,
+                                    symbol=symbol,defaults={'no_of_shares': updated_shares},
+                                )
+                obj.save()
+
 
         # messages.success(request, 'Trade successfully executed.')
         return redirect('Dashboard')
     else:
-        # stock_picker = tickers_nifty50()
-        # result = {}
-        # for sym in stock_picker:
-        #     data = get_quote_table(sym)
-        #     result.update({sym:data['Open']})
-        #
-        # print(result)
         data = get_quote_table(stockname)
         ctxt = {
             'sym':stockname,
             'open':data['Open']
         }
         return render(request, 'trade2.html', ctxt)
-
-# @login_required(login_url = 'client_homepage')
+#
+@login_required(login_url = 'login')
 def history(request):
-    # user = User.objects.get(request.user.email)
-    # trades = Trade.objects.filter(user=user)
-    trades = Trade.objects.all()
+    username = request.user.username
+    trades = Trade.objects.filter(username=username)
+    # trades = Trade.objects.all()
     context = {
         'trades': trades
     }
     print(context)
-    return HttpResponse(context)
-    # return render(request, 'history.html', context)
-
-
-def ClientHomePage(request):
-    if(request.method == "GET"):
-        return render(request, "login.html")
-    else:
-        email = request.POST['email']
-        password = request.POST['password']
-        print(email,password)
-
-        user = auth.authenticate(email=email, password=password)
-
-        if user is not None:
-            auth.login(request, user)
-            print("Hello")
-            return redirect('Dashboard')
-            # return HttpResponse("Logged in")
-
-
-        else:
-            print("Hellp")
-            # return HttpResponse("Logged in")
-            return redirect('client_homepage')
-
-
-
-def clientNewuser(request):
-    if(request.method == "GET"):
-        return render(request, "create_user.html")
-    else:
-        # print("ok")
-
-        name = request.POST.get('name', 0)
-        phone_number = request.POST.get('phonenumber', 0)
-        password = request.POST.get('password', 0)
-        email = request.POST.get('email', 0)
-
-        try:
-            print("yes")
-            value = Account.objects.get(email = email)
-            return redirect('client_homepage')
-        except ObjectDoesNotExist:
-            pass
-        user = Account.objects.create_user(name=name, email=email, phone_number=phone_number, password=password)
-        user.is_active = True
-        user.save()
-
-        return redirect('client_homepage')
-
-
-
-def logout(request):
-    auth.logout(request)
-    messages.success(request, 'You are logged out.')
-    return redirect('client_homepage')
+    return render(request, 'history.html', context)
 
 
 def stockTracker(request):
@@ -211,11 +167,11 @@ def stockTracker(request):
         stockpicker = tickers_nifty50()
         data = {}
         available_stocks = tickers_nifty50()
-        # for i in stockpicker:
-        #     if i in available_stocks:
-        #         pass
-        #     else:
-        #         return HttpResponse("Error")
+        for i in stockpicker:
+            if i in available_stocks:
+                pass
+            else:
+                return HttpResponse("Error")
 
         n_threads = len(stockpicker)
         thread_list = []
@@ -255,18 +211,36 @@ def stockTracker(request):
 
         stockname = request.POST.get('symbol', 0)
         data = get_quote_table(stockname)
-        # ctxt = {
-        #     'sym':stockname,
-        #     'open':data['Open']
-        # }
         print(data)
 
 
         return render(request, 'stocktracker.html',
-                      {'data': {stockname:data},'result':stock_picker})    # is_loginned = await checkAuthenticated(request)
-    # if not is_loginned:
-    #     return HttpResponse("Login First")
-    # stockpicker = request.GET.getlist('stockpicker')
-    # stockshare = str(stockpicker)[1:-1]
-    # stockpicker = tickers.ni
-    # print(stockpicker)
+                      {'data': {stockname:data},'result':stock_picker})
+
+
+def view_users(request):
+    if (request.method == "GET"):
+        users = UserDetails.objects.all().order_by('profit').values()
+        return render(request, 'view_users.html',
+                      {'users': users,'users':users})
+
+    else:
+        # return HttpResponse("HIII")
+        # pass
+        # print("ok")
+        # stock_picker = tickers_nifty50()
+        username = request.POST.get('username', 0)
+
+        users = UserDetails.objects.filter(username = username).order_by('-profit').values()
+        return render(request, 'view_users.html',
+                      {'data': users,'users':users})
+
+
+def track(request,username):
+    trades = Trade.objects.filter(username=username)
+    # trades = Trade.objects.all()
+    context = {
+        'trades': trades
+    }
+    print(context)
+    return render(request, 'history.html', context)

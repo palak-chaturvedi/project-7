@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'simulator',
     'homepage',
-    'accounts'
+    'accounts',
+    'authenticate'
 ]
 
 MIDDLEWARE = [
