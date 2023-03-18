@@ -8,10 +8,28 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <script src="https://kit.fontawesome.com/be530bfcd4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href=
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>Login</title>
+
+    <style>
+      body{
+        background-color:rgb(194, 240, 255);
+  background-image:
+radial-gradient(at 80% 0%, rgb(31, 158, 255) 0px, transparent 50%),
+radial-gradient(at 0% 50%, rgb(219, 243, 255) 0px, transparent 50%),
+radial-gradient(at 80% 50%, rgb(133, 147, 255) 0px, transparent 50%),
+radial-gradient(at 0% 100%, rgb(92, 98, 191) 0px, transparent 50%),
+radial-gradient(at 0% 0%, rgb(133, 182, 255) 0px, transparent 50%);
+height: 100vh;
+  width: 100vw;
+      }
+    </style>
   </head>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="{% url 'home'  %}">Stockify</a>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'home'  %}"><i class="fa-sharp fa-solid fa-arrow-trend-up"></i> Stockify</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -19,7 +37,7 @@
     <ul class="navbar-nav ml-auto">
 
         <li class="nav-item active">
-        <a class="nav-link" href="{% url 'login' %}">Login</a>
+        <a class="nav-link" href="{% url 'login' %}" style="background-color: #343A40; border: 3px solid black; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px; border-radius: 1rem; color: white; font-size: 15px;">Login</a>
       </li>
 
     </ul>
@@ -27,6 +45,8 @@
   </div>
 		  </nav>
 {% block content %}
+
+<div class="container" style="background-color: rgba(255,255,255,0.4); box-shadow: 0px 0 31px 0px rgb(0 0 0 / 10%); margin-top: 20px; padding: 10px; border-radius: 50px;">
 
 <h2 class ="text-center"> Register </h2>
 
@@ -60,7 +80,8 @@
 		{{ form.as_p }}
 
 
-		<input type="submit" value="Register" class=" btn btn-secondary">
+		<input type="submit" value="Register" class=" btn btn-secondary" style="background-color: #343A40; border: 3px solid black; padding-left: 25px; padding-right: 25px; padding-top: 10px; padding-bottom: 10px; border-radius: 1rem; color: white; font-size: 18px;">
 	</form>
+</div>
 </div>
 {% endblock %}
