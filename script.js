@@ -11,8 +11,20 @@ allSideMenu.forEach(item=> {
 	})
 });
 
+function checkboxes()
+      {
+       var inputElems = document.getElementsByTagName("input"),
+        count = 0;
+          
+        for (var i=0; i<inputElems.length; i++) {       
+if (inputElems[i].type == "checkbox" && inputElems[i].checked == true) 
+{
+    count++;
+    const header = document.getElementById("greetings");
+    header.innerHTML = count;
+}
 
-
+} }
 
 // TOGGLE SIDEBAR
 const menuBar = document.querySelector('#content nav .bx.bx-menu');
