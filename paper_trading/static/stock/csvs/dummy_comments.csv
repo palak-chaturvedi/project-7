@@ -1,0 +1,17 @@
+expert_id	comments	company_code	sentiment	target
+526	See Nifty fall at opening	NIFTY	hold	-1
+1	See Nifty open gap up at 8340	NIFTY	sell	8340.0
+78	Buy KEC Intl; target of Rs 164	KEC	buy	164.0
+262	Buy Ashoka Buildcon; target of Rs 273	ASHOKA	buy	273.0
+526	See Nifty open on positive note	NIFTY	hold	-1
+1	Expect Nifty to open gap up at 8264	NIFTY	hold	8264.0
+748	Buy KEC Intl; target of Rs 150	KEC	buy	150.0
+1	Buy Lupin; target of Rs 1693	LUPIN	buy	1693.0
+748	Buy Ceat; target of Rs 1120	CEATLTD	buy	1120.0
+748	Sell L&T; target of Rs 1000	TTL	sell	1000.0
+301	Buy Banco; target of Rs 171	BANCOINDIA	buy	171.0
+748	Hold Dr. Reddys; target of Rs 3280	VHL	hold	3280.0
+659	Accumulate HCL Tech; target of Rs 890	NIITTECH	buy	890.0
+561	Buy Byke Hospitality; target of Rs 215	BYKE	buy	215.0
+1	Expect Nifty to open gap up at 8166	NIFTY	hold	8166.0
+526	See Nifty open on positive note	NIFTY	hold	-1

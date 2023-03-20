@@ -1,0 +1,1615 @@
+{% extends 'stock/base_dashboard.html' %}
+{% block title %}View Trend{% endblock %}
+
+{% block heads %}
+    {% load static %}
+    <style type="text/css">
+.bs-example{
+	font-family: sans-serif;
+	position: relative;
+	margin: 100px;
+}
+.typeahead, .tt-query, .tt-hint {
+	border: 2px solid #CCCCCC;
+	border-radius: 8px;
+	font-size: 24px;
+	height: 30px;
+	line-height: 30px;
+	outline: medium none;
+	padding: 8px 12px;
+	width: 396px;
+}
+.typeahead {
+	background-color: #FFFFFF;
+}
+.typeahead:focus {
+	border: 2px solid #0097CF;
+}
+.tt-query {
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+.tt-hint {
+	color: #999999;
+}
+.tt-dropdown-menu {
+	background-color: #FFFFFF;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 8px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	margin-top: 12px;
+	padding: 8px 0;
+	width: 422px;
+}
+.tt-suggestion {
+	font-size: 24px;
+	line-height: 24px;
+	padding: 3px 20px;
+}
+.tt-suggestion.tt-is-under-cursor {
+	background-color: #0097CF;
+	color: #FFFFFF;
+}
+.tt-suggestion p {
+	margin: 0;
+}
+</style>
+  {% endblock %}
+
+{% block content %}
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">View Current Trend</h1>
+  <h2>Trend</h2>
+    <div class="form-group">
+      <label for="StockList">Select company (select one):</label>
+
+<div class="container-fluid">
+    <select class="form-control" id="StockList" style="width: auto">
+    <option value="https://www.google.com/finance/getchart?q=">-------Select Stock-------</option>
+    <option value=https://www.google.com/finance/getchart?q=3IINFOTECH>3IINFOTECH : 3i Infotech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=3MINDIA>3MINDIA : 3M India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=8KMILES>8KMILES : 8K Miles Software Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=20MICRONS>20MICRONS : 20 Microns Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=A2ZINFRA>A2ZINFRA : A2Z INFRA ENGINEERING LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=AARTIDRUGS>AARTIDRUGS : Aarti Drugs Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AARTIIND>AARTIIND : Aarti Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AARVEEDEN>AARVEEDEN : Aarvee Denims & Exports Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ABAN>ABAN : Aban Offshore Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ABB>ABB : ABB India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ABBOTINDIA>ABBOTINDIA : Abbott India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ABFRL>ABFRL : Aditya Birla Fashion and Retail Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ABGSHIP>ABGSHIP : ABG Shipyard Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ABIRLANUVO>ABIRLANUVO : Aditya Birla Nuvo Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ACC>ACC : ACC Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ACCELYA>ACCELYA : Accelya Kale Solutions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ACE>ACE : Action Construction Equipment Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ACROPETAL>ACROPETAL : Acropetal Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ADANIENT>ADANIENT : Adani Enterprises Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ADANIPORTS>ADANIPORTS : Adani Ports and Special Economic Zone Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ADANIPOWER>ADANIPOWER : Adani Power Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ADANITRANS>ADANITRANS : Adani Transmission Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ADFFOODS>ADFFOODS : ADF Foods Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ADHUNIK>ADHUNIK : Adhunik Metaliks Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ADI>ADI : Adi Finechem Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ADLABS>ADLABS : Adlabs Entertainment Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ADORWELD>ADORWELD : Ador Welding Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ADSL>ADSL : Allied Digital Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ADVANIHOTR>ADVANIHOTR : Advani Hotels & Resorts (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ADVANTA>ADVANTA : Advanta Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AEGISCHEM>AEGISCHEM : Aegis Logistics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AFL>AFL : Accel Frontline Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AGARIND>AGARIND : Agarwal Industrial Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AGCNET>AGCNET : AGC Networks Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AGRITECH>AGRITECH : Agri-Tech (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AGRODUTCH>AGRODUTCH : Agro Dutch Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AHLEAST>AHLEAST : Asian Hotels (East) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AHLUCONT>AHLUCONT : Ahluwalia Contracts (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AHLWEST>AHLWEST : Asian Hotels (West) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AIAENG>AIAENG : AIA Engineering Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AICHAMP>AICHAMP : AI Champdany Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AIFL>AIFL : Ashapura Intimates Fashion Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AIL>AIL : Alstom India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AJANTPHARM>AJANTPHARM : Ajanta Pharma Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AJMERA>AJMERA : Ajmera Realty & Infra India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AKSHOPTFBR>AKSHOPTFBR : Aksh Optifibre Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AKZOINDIA>AKZOINDIA : Akzo Nobel India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ALANKIT>ALANKIT : Alankit Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ALBK>ALBK : Allahabad Bank</option>
+    <option value=https://www.google.com/finance/getchart?q=ALCHEM>ALCHEM : Alchemist Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ALEMBICLTD>ALEMBICLTD : Alembic Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ALICON>ALICON : Alicon Castalloy Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ALKALI>ALKALI : Alkali Metals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ALKEM>ALKEM : Alkem Laboratories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ALKYLAMINE>ALKYLAMINE : Alkyl Amines Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ALLCARGO>ALLCARGO : Allcargo Logistics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ALLSEC>ALLSEC : Allsec Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ALMONDZ>ALMONDZ : Almondz Global Securities Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ALOKTEXT>ALOKTEXT : Alok Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ALPA>ALPA : Alpa Laboratories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ALPHAGEO>ALPHAGEO : Alphageo (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ALPSINDUS>ALPSINDUS : Alps Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ALSTOMT&D>ALSTOMT&D : Alstom T&D India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AMARAJABAT>AMARAJABAT : Amara Raja Batteries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AMBIKCO>AMBIKCO : Ambika Cotton Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AMBUJACEM>AMBUJACEM : Ambuja Cements Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AMDIND>AMDIND : AMD Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AMRUTANJAN>AMRUTANJAN : Amrutanjan Health Care Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AMTEKAUTO>AMTEKAUTO : Amtek Auto Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AMTL>AMTL : Advance Metering Technology Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ANANDAMRUB>ANANDAMRUB : The Anandam Rubber Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ANANTRAJ>ANANTRAJ : Anant Raj Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ANDHRABANK>ANDHRABANK : Andhra Bank</option>
+    <option value=https://www.google.com/finance/getchart?q=ANDHRACEMT>ANDHRACEMT : Andhra Cements Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ANDHRSUGAR>ANDHRSUGAR : The Andhra Sugars Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ANGIND>ANGIND : ANG Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ANIKINDS>ANIKINDS : Anik Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ANKITMETAL>ANKITMETAL : Ankit Metal & Power Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ANSALAPI>ANSALAPI : Ansal Properties & Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ANSALHSG>ANSALHSG : Ansal Housing and Construction Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ANTGRAPHIC>ANTGRAPHIC : Antarctica Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=APARINDS>APARINDS : Apar Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=APCOTEXIND>APCOTEXIND : Apcotex Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=APLAPOLLO>APLAPOLLO : APL Apollo Tubes Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=APLLTD>APLLTD : Alembic Pharmaceuticals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=APOLLOHOSP>APOLLOHOSP : Apollo Hospitals Enterprise Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=APOLLOTYRE>APOLLOTYRE : Apollo Tyres Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=APOLSINHOT>APOLSINHOT : Apollo Sindoori Hotels Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=APTECHT>APTECHT : Aptech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ARCHIDPLY>ARCHIDPLY : Archidply Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ARCHIES>ARCHIES : Archies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ARCOTECH>ARCOTECH : Arcotech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ARIES>ARIES : Aries Agro Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ARIHANT>ARIHANT : Arihant Foundations & Housing Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AROGRANITE>AROGRANITE : Aro Granite Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ARROWGREEN>ARROWGREEN : Arrow Greentech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ARROWTEX>ARROWTEX : Arrow Textiles Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ARSHIYA>ARSHIYA : Arshiya Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ARSSINFRA>ARSSINFRA : ARSS Infrastructure Projects Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ARVIND>ARVIND : Arvind Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ARVINFRA>ARVINFRA : Arvind Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASAHIINDIA>ASAHIINDIA : Asahi India Glass Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASAHISONG>ASAHISONG : Asahi Songwon Colors Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASAL>ASAL : Automotive Stampings and Assemblies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASHAPURMIN>ASHAPURMIN : Ashapura Minechem Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASHIANA>ASHIANA : Ashiana Housing Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASHIMASYN>ASHIMASYN : Ashima Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASHOKA>ASHOKA : Ashoka Buildcon Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASHOKLEY>ASHOKLEY : Ashok Leyland Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASIANHOTNR>ASIANHOTNR : Asian Hotels (North) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASIANPAINT>ASIANPAINT : Asian Paints Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASIANTILES>ASIANTILES : Asian Granito India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASIL>ASIL : Amit Spinning Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASSAMCO>ASSAMCO : Assam Company India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASTEC>ASTEC : Astec LifeSciences Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASTRAL>ASTRAL : Astral Poly Technik Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASTRAMICRO>ASTRAMICRO : Astra Microwave Products Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ASTRAZEN>ASTRAZEN : AstraZeneca Pharma India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ATFL>ATFL : Agro Tech Foods Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ATLANTA>ATLANTA : Atlanta  Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ATLASCYCLE>ATLASCYCLE : Atlas Cycles (Haryana) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ATNINTER>ATNINTER : ATN International Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ATUL>ATUL : Atul Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ATULAUTO>ATULAUTO : Atul Auto Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AURIONPRO>AURIONPRO : Aurionpro Solutions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AUROPHARMA>AUROPHARMA : Aurobindo Pharma Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AUSOMENT>AUSOMENT : Ausom Enterprise Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AUSTRAL>AUSTRAL : Austral Coke & Projects Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AUTOAXLES>AUTOAXLES : Automotive Axles Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AUTOIND>AUTOIND : Autoline Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AUTOLITIND>AUTOLITIND : Autolite (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AVANTIFEED>AVANTIFEED : Avanti Feeds Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AVTNPL>AVTNPL : AVT Natural Products Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AXISBANK>AXISBANK : Axis Bank Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AXISCADES>AXISCADES : AXISCADES Engineering Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=AYMSYNTEX>AYMSYNTEX : AYM Syntex Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BAFNAPHARM>BAFNAPHARM : Bafna Pharmaceuticals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BAGFILMS>BAGFILMS : B.A.G Films and Media Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BAJAJ-AUTO>BAJAJ-AUTO : Bajaj Auto Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BAJAJCORP>BAJAJCORP : Bajaj Corp Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BAJAJELEC>BAJAJELEC : Bajaj Electricals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BAJAJFINSV>BAJAJFINSV : Bajaj Finserv Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BAJAJHIND>BAJAJHIND : Bajaj Hindusthan Sugar Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BAJAJHLDNG>BAJAJHLDNG : Bajaj Holdings & Investment Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BAJFINANCE>BAJFINANCE : Bajaj Finance Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BALAJITELE>BALAJITELE : Balaji Telefilms Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BALAMINES>BALAMINES : Balaji Amines Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BALKRISIND>BALKRISIND : Balkrishna Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BALLARPUR>BALLARPUR : Ballarpur Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BALMLAWRIE>BALMLAWRIE : Balmer Lawrie & Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BALPHARMA>BALPHARMA : Bal Pharma Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BALRAMCHIN>BALRAMCHIN : Balrampur Chini Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BANARBEADS>BANARBEADS : Banaras Beads Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BANARISUG>BANARISUG : Bannari Amman Sugars Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BANCOINDIA>BANCOINDIA : Banco Products (I) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BANG>BANG : Bang Overseas Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BANKBARODA>BANKBARODA : Bank of Baroda</option>
+    <option value=https://www.google.com/finance/getchart?q=BANKINDIA>BANKINDIA : Bank of India</option>
+    <option value=https://www.google.com/finance/getchart?q=BANSWRAS>BANSWRAS : Banswara Syntex Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BARTRONICS>BARTRONICS : Bartronics India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BASF>BASF : BASF India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BASML>BASML : Bannari Amman Spinning Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BATAINDIA>BATAINDIA : Bata India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BAYERCROP>BAYERCROP : Bayer Cropscience Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BBL>BBL : Bharat Bijlee Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BBTC>BBTC : Bombay Burmah Trading Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BEARDSELL>BEARDSELL : Beardsell Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BEDMUTHA>BEDMUTHA : Bedmutha Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BEL>BEL : Bharat Electronics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BEML>BEML : BEML Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BEPL>BEPL : Bhansali Engineering Polymers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BERGEPAINT>BERGEPAINT : Berger Paints (I) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BFINVEST>BFINVEST : BF Investment Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BFUTILITIE>BFUTILITIE : BF Utilities Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BGLOBAL>BGLOBAL : Bharatiya Global Infomedia Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BGRENERGY>BGRENERGY : BGR Energy Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BHAGERIA>BHAGERIA : Bhageria Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BHAGYNAGAR>BHAGYNAGAR : Bhagyanagar India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BHARATFORG>BHARATFORG : Bharat Forge Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BHARATGEAR>BHARATGEAR : Bharat Gears Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BHARATIDIL>BHARATIDIL : Bharati Defence and Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BHARATRAS>BHARATRAS : Bharat Rasayan Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BHARATWIRE>BHARATWIRE : Bharat Wire Ropes Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BHARTIARTL>BHARTIARTL : Bharti Airtel Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BHEL>BHEL : Bharat Heavy Electricals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BHUSANSTL>BHUSANSTL : Bhushan Steel Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BIL>BIL : Bhartiya International Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BILENERGY>BILENERGY : Bil Energy Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BILPOWER>BILPOWER : Bilpower  Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BINANIIND>BINANIIND : Binani Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BINDALAGRO>BINDALAGRO : Oswal Chemicals & Fertilizers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BIOCON>BIOCON : Biocon Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BIRLACORPN>BIRLACORPN : Birla Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BIRLACOT>BIRLACOT : Birla Cotsyn (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BIRLAERIC>BIRLAERIC : Birla Ericsson Optical Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BIRLAMONEY>BIRLAMONEY : Aditya Birla Money Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BLBLIMITED>BLBLIMITED : BLB Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BLISSGVS>BLISSGVS : Bliss GVS Pharma Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BLKASHYAP>BLKASHYAP : B. L. Kashyap and Sons Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BLUEBLENDS>BLUEBLENDS : Blue Blends (I) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BLUECHIP>BLUECHIP : Blue Chip India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BLUECOAST>BLUECOAST : Blue Coast Hotels Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BLUEDART>BLUEDART : Blue Dart Express Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BLUESTARCO>BLUESTARCO : Blue Star Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BODALCHEM>BODALCHEM : Bodal Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BOMDYEING>BOMDYEING : Bombay Dyeing & Mfg Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BOSCHLTD>BOSCHLTD : Bosch Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BPCL>BPCL : Bharat Petroleum Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BPL>BPL : BPL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BRFL>BRFL : Bombay Rayon Fashions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BRIGADE>BRIGADE : Brigade Enterprises Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BRITANNIA>BRITANNIA : Britannia Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BROADCAST>BROADCAST : Broadcast Initiatives Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BROOKS>BROOKS : Brooks Laboratories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BSELINFRA>BSELINFRA : BSEL Infrastructure Realty Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BSL>BSL : BSL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BSLIMITED>BSLIMITED : BS LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=BURNPUR>BURNPUR : Burnpur Cement Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BUTTERFLY>BUTTERFLY : Butterfly Gandhimathi Appliances Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BVCL>BVCL : Barak Valley Cements Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=BYKE>BYKE : The Byke Hospitality Ltd</option>
+    <option value=https://www.google.com/finance/getchart?q=CADILAHC>CADILAHC : Cadila Healthcare Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CAIRN>CAIRN : Cairn India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CALSOFT>CALSOFT : California Software Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CAMLINFINE>CAMLINFINE : Camlin Fine Sciences Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CANBK>CANBK : Canara Bank</option>
+    <option value=https://www.google.com/finance/getchart?q=CANDC>CANDC : C & C Constructions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CANFINHOME>CANFINHOME : Can Fin Homes Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CANTABIL>CANTABIL : Cantabil Retail India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CAPF>CAPF : Capital First Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CAPLIPOINT>CAPLIPOINT : Caplin Point Laboratories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CARBORUNIV>CARBORUNIV : Carborundum Universal Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CAREERP>CAREERP : Career Point Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CARERATING>CARERATING : Credit Analysis And Research Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CASTEXTECH>CASTEXTECH : Castex Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CASTROLIND>CASTROLIND : Castrol India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CCCL>CCCL : Consolidated Construction Consortium Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CCHHL>CCHHL : Country Club Hospitality & Holidays Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CCL>CCL : CCL Products (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CEATLTD>CEATLTD : CEAT Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CEBBCO>CEBBCO : Commercial Engineers & Body Builders Co Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CELEBRITY>CELEBRITY : Celebrity Fashions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CELESTIAL>CELESTIAL : Celestial Biolabs Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CENTENKA>CENTENKA : Century Enka Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CENTEXT>CENTEXT : Century Extrusions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CENTRALBK>CENTRALBK : Central Bank of India</option>
+    <option value=https://www.google.com/finance/getchart?q=CENTUM>CENTUM : Centum Electronics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CENTURYPLY>CENTURYPLY : Century Plyboards (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CENTURYTEX>CENTURYTEX : Century Textiles & Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CERA>CERA : Cera Sanitaryware Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CEREBRAINT>CEREBRAINT : Cerebra Integrated Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CESC>CESC : CESC Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CGCL>CGCL : Capri Global Capital Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CHAMBLFERT>CHAMBLFERT : Chambal Fertilizers & Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CHEMFALKAL>CHEMFALKAL : Chemfab Alkalis Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CHENNPETRO>CHENNPETRO : Chennai Petroleum Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CHOLAFIN>CHOLAFIN : Cholamandalam Investment and Finance Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CHROMATIC>CHROMATIC : Chromatic India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CIGNITITEC>CIGNITITEC : Cigniti Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CIMMCO>CIMMCO : Cimmco Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CINELINE>CINELINE : Cineline India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CINEVISTA>CINEVISTA : Cinevista Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CIPLA>CIPLA : Cipla Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CLNINDIA>CLNINDIA : Clariant Chemicals (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CNOVAPETRO>CNOVAPETRO : CIL Nova Petrochemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=COALINDIA>COALINDIA : Coal India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=COFFEEDAY>COFFEEDAY : Coffee Day Enterprises Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=COLPAL>COLPAL : Colgate Palmolive (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=COMPUSOFT>COMPUSOFT : Compucom Software Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CONCOR>CONCOR : Container Corporation of India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CONSOFINVT>CONSOFINVT : Consolidated Finvest & Holdings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CORDSCABLE>CORDSCABLE : Cords Cable Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=COROMANDEL>COROMANDEL : Coromandel International Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CORPBANK>CORPBANK : Corporation Bank</option>
+    <option value=https://www.google.com/finance/getchart?q=COSMOFILMS>COSMOFILMS : Cosmo Films Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=COUNCODOS>COUNCODOS : Country Condo's Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=COX&KINGS>COX&KINGS : Cox & Kings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CREATIVEYE>CREATIVEYE : Creative Eye Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CREST>CREST : Crest Ventures Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CRISIL>CRISIL : CRISIL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CROMPGREAV>CROMPGREAV : Crompton  Greaves Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CROMPTON>CROMPTON : Crompton Greaves Consumer Electricals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CTE>CTE : Cambridge Technology Enterprises Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CUB>CUB : City Union Bank Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CUBEXTUB>CUBEXTUB : Cubex Tubings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CUMMINSIND>CUMMINSIND : Cummins India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CURATECH>CURATECH : Cura Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CYBERMEDIA>CYBERMEDIA : Cyber Media (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CYBERTECH>CYBERTECH : Cybertech Systems And Software Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=CYIENT>CYIENT : Cyient Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DAAWAT>DAAWAT : LT Foods Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DABUR>DABUR : Dabur India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DALMIABHA>DALMIABHA : Dalmia Bharat Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DALMIASUG>DALMIASUG : Dalmia Bharat Sugar and Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DATAMATICS>DATAMATICS : Datamatics Global Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DBCORP>DBCORP : D.B.Corp Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DBREALTY>DBREALTY : D B Realty Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DBSTOCKBRO>DBSTOCKBRO : DB (International) Stock Brokers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DCBBANK>DCBBANK : DCB BANK LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=DCM>DCM : DCM  Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DCMSHRIRAM>DCMSHRIRAM : DCM Shriram Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DCW>DCW : DCW Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DECCANCE>DECCANCE : Deccan Cements Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DEEPAKFERT>DEEPAKFERT : Deepak Fertilizers and Petrochemicals Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DEEPAKNTR>DEEPAKNTR : Deepak Nitrite Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DEEPIND>DEEPIND : Deep Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DELTACORP>DELTACORP : Delta Corp Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DELTAMAGNT>DELTAMAGNT : Delta Magnets Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DEN>DEN : Den Networks Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DENABANK>DENABANK : Dena Bank</option>
+    <option value=https://www.google.com/finance/getchart?q=DENORA>DENORA : De Nora India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DHAMPURSUG>DHAMPURSUG : Dhampur Sugar Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DHANBANK>DHANBANK : Dhanlaxmi Bank Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DHANUKA>DHANUKA : Dhanuka Agritech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DHARSUGAR>DHARSUGAR : Dharani Sugars & Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DHFL>DHFL : Dewan Housing Finance Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DHUNINV>DHUNINV : Dhunseri Investments Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DIAPOWER>DIAPOWER : Diamond Power Infra Ltd</option>
+    <option value=https://www.google.com/finance/getchart?q=DICIND>DICIND : DIC India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DISHMAN>DISHMAN : Dishman Pharmaceuticals and Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DISHTV>DISHTV : Dish TV India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DIVISLAB>DIVISLAB : Divi's Laboratories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DLF>DLF : DLF Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DLINKINDIA>DLINKINDIA : D-Link (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DOLPHINOFF>DOLPHINOFF : Dolphin Offshore Enterprises (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DONEAR>DONEAR : Donear Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DPL>DPL : Dhunseri Petrochem Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DPSCLTD>DPSCLTD : DPSC Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DQE>DQE : DQ Entertainment (International) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DREDGECORP>DREDGECORP : Dredging Corporation of India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DRREDDY>DRREDDY : Dr. Reddy's Laboratories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DSKULKARNI>DSKULKARNI : DS Kulkarni Developers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DSSL>DSSL : Dynacons Systems & Solutions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DTIL>DTIL : Dhunseri Tea & Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DUCON>DUCON : Ducon Infratechnologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DWARKESH>DWARKESH : Dwarikesh Sugar Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=DYNAMATECH>DYNAMATECH : Dynamatic Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EASTSILK>EASTSILK : Eastern Silk Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EASUNREYRL>EASUNREYRL : Easun Reyrolle Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ECEIND>ECEIND : ECE Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ECLERX>ECLERX : eClerx Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EDELWEISS>EDELWEISS : Edelweiss Financial Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EDL>EDL : Empee Distilleries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EDUCOMP>EDUCOMP : Educomp Solutions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EICHERMOT>EICHERMOT : Eicher Motors Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EIDPARRY>EIDPARRY : EID Parry India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EIHAHOTELS>EIHAHOTELS : EIH Associated Hotels Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EIHOTEL>EIHOTEL : EIH Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EIMCOELECO>EIMCOELECO : Eimco Elecon (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EKC>EKC : Everest Kanto Cylinder Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ELAND>ELAND : E-Land Apparel Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ELECON>ELECON : Elecon Engineering Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ELECTCAST>ELECTCAST : Electrosteel Castings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ELECTHERM>ELECTHERM : Electrotherm (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ELGIEQUIP>ELGIEQUIP : Elgi Equipments Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ELGIRUBCO>ELGIRUBCO : Elgi Rubber Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EMAMIINFRA>EMAMIINFRA : Emami Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EMAMILTD>EMAMILTD : Emami Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EMCO>EMCO : Emco Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EMKAY>EMKAY : Emkay Global Financial Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EMMBI>EMMBI : Emmbi Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ENERGYDEV>ENERGYDEV : Energy Development Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ENGINERSIN>ENGINERSIN : Engineers India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ENIL>ENIL : Entertainment Network (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ENTEGRA>ENTEGRA : Entegra Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EON>EON : Eon Electric Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EQUITAS>EQUITAS : Equitas Holdings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EROSMEDIA>EROSMEDIA : Eros International Media Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ESABINDIA>ESABINDIA : Esab India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ESCORTS>ESCORTS : Escorts Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ESL>ESL : Electrosteel Steels Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ESSARSHPNG>ESSARSHPNG : Essar Shipping Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ESSDEE>ESSDEE : Ess Dee Aluminium Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ESSELPACK>ESSELPACK : Essel Propack Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ESTER>ESTER : Ester Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EUROCERA>EUROCERA : Euro Ceramics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EUROMULTI>EUROMULTI : Euro Multivision Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EUROTEXIND>EUROTEXIND : Eurotex Industries and Exports Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EVEREADY>EVEREADY : Eveready Industries India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EVERESTIND>EVERESTIND : Everest Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EVERONN>EVERONN : Everonn Education Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EXCEL>EXCEL : Excel Realty N Infra Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EXCELCROP>EXCELCROP : Excel Crop Care Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EXCELINDUS>EXCELINDUS : Excel Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=EXIDEIND>EXIDEIND : Exide Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FACT>FACT : Fertilizers and Chemicals Travancore Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FAGBEARING>FAGBEARING : FAG Bearings India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FARMAXIND>FARMAXIND : Farmax India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FCEL>FCEL : Future Consumer Enterprise Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FCL>FCL : Fineotex Chemical Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FCSSOFT>FCSSOFT : FCS Software Solutions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FDC>FDC : FDC Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FEDDERLOYD>FEDDERLOYD : Fedders Lloyd Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FEDERALBNK>FEDERALBNK : The Federal Bank  Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FEL>FEL : FUTURE ENTERPRISES LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=FELDVR>FELDVR : Future Enterprises Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FIEMIND>FIEMIND : Fiem Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FILATEX>FILATEX : Filatex India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FINANTECH>FINANTECH : Financial Technologies (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FINCABLES>FINCABLES : Finolex Cables Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FINPIPE>FINPIPE : Finolex Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FIRSTWIN>FIRSTWIN : First Winner Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FLEXITUFF>FLEXITUFF : Flexituff International Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FLFL>FLFL : Future Lifestyle Fashions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FMGOETZE>FMGOETZE : Federal-Mogul Goetze (India) Limited.</option>
+    <option value=https://www.google.com/finance/getchart?q=FMNL>FMNL : Future Market Networks Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FORTIS>FORTIS : Fortis Healthcare Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FOSECOIND>FOSECOIND : Foseco India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=FSL>FSL : Firstsource Solutions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GABRIEL>GABRIEL : Gabriel India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GAEL>GAEL : Gujarat Ambuja Exports Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GAIL>GAIL : GAIL (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GAL>GAL : Gyscoal Alloys Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GALLANTT>GALLANTT : Gallantt Metal Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GALLISPAT>GALLISPAT : Gallantt Ispat Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GAMMNINFRA>GAMMNINFRA : Gammon Infrastructure Projects Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GAMMONIND>GAMMONIND : Gammon India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GANDHITUBE>GANDHITUBE : Gandhi Special Tubes Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GANECOS>GANECOS : Ganesha Ecosphere Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GANESHHOUC>GANESHHOUC : Ganesh Housing Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GANGOTRI>GANGOTRI : Gangotri Textiles Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GARDENSILK>GARDENSILK : Garden Silk Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GARWALLROP>GARWALLROP : Garware  Wall Ropes Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GATI>GATI : GATI Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GAYAPROJ>GAYAPROJ : Gayatri Projects Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GDL>GDL : Gateway Distriparks Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GEECEE>GEECEE : GeeCee Ventures Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GEINDSYS>GEINDSYS : GEI Industrial Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GEMINI>GEMINI : Gemini Communication Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GENESYS>GENESYS : Genesys International Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GENUSPAPER>GENUSPAPER : Genus Paper & Boards Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GENUSPOWER>GENUSPOWER : Genus Power Infrastructures Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GEOJITBNPP>GEOJITBNPP : Geojit BNP Paribas Financial Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GEOMETRIC>GEOMETRIC : Geometric Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GESHIP>GESHIP : The Great Eastern Shipping Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GHCL>GHCL : GHCL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GICHSGFIN>GICHSGFIN : GIC Housing Finance Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GILLANDERS>GILLANDERS : Gillanders Arbuthnot & Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GILLETTE>GILLETTE : Gillette India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GINNIFILA>GINNIFILA : Ginni Filaments Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GIPCL>GIPCL : Gujarat Industries Power Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GISOLUTION>GISOLUTION : GI Engineering Solutions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GITANJALI>GITANJALI : Gitanjali Gems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GKWLIMITED>GKWLIMITED : GKW Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GLAXO>GLAXO : GlaxoSmithKline Pharmaceuticals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GLENMARK>GLENMARK : Glenmark Pharmaceuticals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GLFL>GLFL : Gujarat Lease Financing Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GLOBALVECT>GLOBALVECT : Global Vectra Helicorp Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GLOBOFFS>GLOBOFFS : Global Offshore Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GLOBUSSPR>GLOBUSSPR : Globus Spirits Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GMBREW>GMBREW : GM Breweries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GMDCLTD>GMDCLTD : Gujarat Mineral Development Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GMRINFRA>GMRINFRA : GMR Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GNFC>GNFC : Gujarat Narmada Valley Fertilizers and Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GOACARBON>GOACARBON : Goa Carbon Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GOCLCORP>GOCLCORP : GOCL Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GODFRYPHLP>GODFRYPHLP : Godfrey Phillips India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GODREJCP>GODREJCP : Godrej Consumer Products Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GODREJIND>GODREJIND : Godrej Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GODREJPROP>GODREJPROP : Godrej Properties Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GOENKA>GOENKA : Goenka Diamond and Jewels Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GOKEX>GOKEX : Gokaldas Exports Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GOKUL>GOKUL : Gokul Refoils and Solvent Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GOKULAGRO>GOKULAGRO : Gokul Agro Resources Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GOLDENTOBC>GOLDENTOBC : Golden Tobacco Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GOLDIAM>GOLDIAM : Goldiam International Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GOLDINFRA>GOLDINFRA : Goldstone Infratech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GOLDTECH>GOLDTECH : Goldstone Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GOODLUCK>GOODLUCK : Good Luck Steel Tubes Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GPIL>GPIL : Godawari Power And Ispat limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GPPL>GPPL : Gujarat Pipavav Port Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GRANULES>GRANULES : Granules India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GRAPHITE>GRAPHITE : Graphite India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GRASIM>GRASIM : Grasim Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GRAVITA>GRAVITA : Gravita India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GREAVESCOT>GREAVESCOT : Greaves Cotton Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GREENFIRE>GREENFIRE : Green Fire Agri Commodities Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GREENLAM>GREENLAM : Greenlam Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GREENPLY>GREENPLY : Greenply Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GREENPOWER>GREENPOWER : Orient Green Power Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GRINDWELL>GRINDWELL : Grindwell Norton Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GRPLTD>GRPLTD : GRP Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GRUH>GRUH : Gruh Finance Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GSCLCEMENT>GSCLCEMENT : Gujarat Sidhee Cement Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GSFC>GSFC : Gujarat State Fertilizers & Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GSKCONS>GSKCONS : GlaxoSmithKline Consumer Healthcare Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GSPL>GSPL : Gujarat State Petronet Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GSS>GSS : GSS Infotech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GTL>GTL : GTL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GTLINFRA>GTLINFRA : GTL Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GTNIND>GTNIND : GTN Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GTNTEX>GTNTEX : GTN Textiles Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GTOFFSHORE>GTOFFSHORE : GOL Offshore Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GUFICBIO>GUFICBIO : Gufic Biosciences Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GUJALKALI>GUJALKALI : Gujarat Alkalies and Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GUJAPOLLO>GUJAPOLLO : Gujarat Apollo Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GUJFLUORO>GUJFLUORO : Gujarat Fluorochemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GUJGASLTD>GUJGASLTD : Gujarat Gas Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GUJNRECOKE>GUJNRECOKE : Gujarat NRE Coke Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GUJNREDVR>GUJNREDVR : Gujarat NRE Coke Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GULFOILLUB>GULFOILLUB : Gulf Oil Lubricants India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GULFPETRO>GULFPETRO : GP Petroleums Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GULPOLY>GULPOLY : Gulshan Polyols Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=GVKPIL>GVKPIL : GVK Power & Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HANUNG>HANUNG : Hanung Toys and Textiles Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HARITASEAT>HARITASEAT : Harita Seating Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HARRMALAYA>HARRMALAYA : Harrisons  Malayalam Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HATHWAY>HATHWAY : Hathway Cable & Datacom Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HATSUN>HATSUN : Hatsun Agro Product Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HAVELLS>HAVELLS : Havells India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HBLPOWER>HBLPOWER : HBL Power Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HBSTOCK>HBSTOCK : HB Stockholdings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HCC>HCC : Hindustan Construction Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HCG>HCG : Healthcare Global Enterprises Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HCIL>HCIL : Himadri Chemicals and Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HCL-INSYS>HCL-INSYS : HCL Infosystems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HCLTECH>HCLTECH : HCL Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HDFC>HDFC : Housing Development Finance Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HDFCBANK>HDFCBANK : HDFC Bank Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HDIL>HDIL : Housing Development and Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HEG>HEG : HEG Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HEIDELBERG>HEIDELBERG : HeidelbergCement India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HERCULES>HERCULES : Hercules Hoists Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HERITGFOOD>HERITGFOOD : Heritage Foods Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HEROMOTOCO>HEROMOTOCO : Hero MotoCorp Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HESTERBIO>HESTERBIO : Hester Biosciences Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HEXATRADEX>HEXATRADEX : Hexa Tradex Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HEXAWARE>HEXAWARE : Hexaware Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HFCL>HFCL : Himachal Futuristic Communications Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HGS>HGS : Hinduja Global Solutions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HIKAL>HIKAL : Hikal Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HIL>HIL : HIL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HILTON>HILTON : Hilton Metal Forging Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HIMATSEIDE>HIMATSEIDE : Himatsingka Seide Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HINDALCO>HINDALCO : Hindalco Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HINDCOMPOS>HINDCOMPOS : Hindustan Composites Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HINDCOPPER>HINDCOPPER : Hindustan Copper Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HINDDORROL>HINDDORROL : Hindustan Dorr-Oliver Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HINDMOTORS>HINDMOTORS : Hindustan Motors Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HINDNATGLS>HINDNATGLS : Hindusthan National Glass & Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HINDOILEXP>HINDOILEXP : Hindustan Oil Exploration Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HINDPETRO>HINDPETRO : Hindustan Petroleum Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HINDSYNTEX>HINDSYNTEX : Hind Syntex Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HINDUJAFO>HINDUJAFO : Hinduja Foundries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HINDUJAVEN>HINDUJAVEN : Hinduja Ventures Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HINDUNILVR>HINDUNILVR : Hindustan Unilever Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HINDZINC>HINDZINC : Hindustan Zinc Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HIRECT>HIRECT : Hind Rectifiers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HITACHIHOM>HITACHIHOM : Hitachi Home and Life Solutions (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HITECHGEAR>HITECHGEAR : The Hi-Tech Gears Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HITECHPLAS>HITECHPLAS : Hitech Plast Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HMT>HMT : HMT Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HMVL>HMVL : Hindustan Media Ventures Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HOCL>HOCL : Hindustan Organic Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HONAUT>HONAUT : Honeywell Automation India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HONDAPOWER>HONDAPOWER : Honda Siel Power Products Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HOTELEELA>HOTELEELA : Hotel Leela Venture Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HOTELRUGBY>HOTELRUGBY : Hotel Rugby Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HOVS>HOVS : HOV Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HSIL>HSIL : HSIL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HTMEDIA>HTMEDIA : HT Media Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=HUBTOWN>HUBTOWN : Hubtown Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IBREALEST>IBREALEST : Indiabulls Real Estate Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IBULHSGFIN>IBULHSGFIN : Indiabulls Housing Finance Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IBVENTURES>IBVENTURES : Indiabulls Ventures Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IBWSL>IBWSL : Indiabulls Wholesale Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ICICIBANK>ICICIBANK : ICICI Bank Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ICIL>ICIL : Indo Count Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ICRA>ICRA : ICRA Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ICSA>ICSA : ICSA (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IDBI>IDBI : IDBI Bank Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IDEA>IDEA : Idea Cellular Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IDFC>IDFC : IDFC Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IDFCBANK>IDFCBANK : IDFC Bank Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IFBAGRO>IFBAGRO : IFB Agro Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IFBIND>IFBIND : IFB Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IFCI>IFCI : IFCI Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IFGLREFRAC>IFGLREFRAC : IFGL Refractories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IGARASHI>IGARASHI : Igarashi Motors India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IGL>IGL : Indraprastha Gas Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IGPL>IGPL : IG Petrochemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IIFL>IIFL : IIFL Holdings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IITL>IITL : Industrial Investment Trust Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IL&FSENGG>IL&FSENGG : IL&FS Engineering and Construction Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IL&FSTRANS>IL&FSTRANS : IL&FS Transportation Networks Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IMFA>IMFA : Indian Metals & Ferro Alloys Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IMPAL>IMPAL : India Motor Parts and Accessories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IMPEXFERRO>IMPEXFERRO : Impex Ferro Tech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDBANK>INDBANK : Indbank Merchant Banking Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDHOTEL>INDHOTEL : The Indian Hotels Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDIACEM>INDIACEM : The India Cements Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDIAGLYCO>INDIAGLYCO : India Glycols Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDIANB>INDIANB : Indian Bank</option>
+    <option value=https://www.google.com/finance/getchart?q=INDIANCARD>INDIANCARD : Indian Card Clothing Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDIANHUME>INDIANHUME : Indian Hume Pipe Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDIGO>INDIGO : InterGlobe Aviation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDLMETER>INDLMETER : IMP Powers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDNIPPON>INDNIPPON : India Nippon Electricals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDOCO>INDOCO : Indoco Remedies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDORAMA>INDORAMA : Indo Rama Synthetics (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDOSOLAR>INDOSOLAR : Indosolar Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDOTECH>INDOTECH : Indo Tech Transformers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDOTHAI>INDOTHAI : Indo Thai Securities Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDOWIND>INDOWIND : Indowind Energy Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDRAMEDCO>INDRAMEDCO : Indraprastha Medical Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDSWFTLAB>INDSWFTLAB : Ind-Swift Laboratories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDSWFTLTD>INDSWFTLTD : Ind-Swift Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDTERRAIN>INDTERRAIN : Indian Terrain Fashions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INDUSINDBK>INDUSINDBK : IndusInd Bank Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INEOSSTYRO>INEOSSTYRO : INEOS Styrolution India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INFIBEAM>INFIBEAM : Infibeam Incorporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INFINITE>INFINITE : Infinite Computer Solutions (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INFOMEDIA>INFOMEDIA : INFOMEDIA PRESS LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=INFRATEL>INFRATEL : Bharti Infratel Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INFY>INFY : Infosys Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INGERRAND>INGERRAND : Ingersoll Rand (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INOXLEISUR>INOXLEISUR : INOX Leisure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INOXWIND>INOXWIND : Inox Wind Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INSECTICID>INSECTICID : Insecticides (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INTEGRA>INTEGRA : Integra Garments and Textiles Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INTELLECT>INTELLECT : Intellect Design Arena Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=INVENTURE>INVENTURE : Inventure Growth & Securities Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IOB>IOB : Indian Overseas Bank</option>
+    <option value=https://www.google.com/finance/getchart?q=IOC>IOC : Indian Oil Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IOLCP>IOLCP : IOL Chemicals and Pharmaceuticals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IPAPPM>IPAPPM : International Paper APPM Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IPCALAB>IPCALAB : IPCA Laboratories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IRB>IRB : IRB Infrastructure Developers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ISFT>ISFT : Intrasoft Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ISMTLTD>ISMTLTD : ISMT Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ITC>ITC : ITC Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ITDCEM>ITDCEM : ITD Cementation India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ITI>ITI : ITI Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IVC>IVC : IL&FS Investment Managers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IVP>IVP : IVP Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IVRCLINFRA>IVRCLINFRA : IVRCL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=IZMO>IZMO : IZMO Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=J&KBANK>J&KBANK : The Jammu & Kashmir Bank Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JAGRAN>JAGRAN : Jagran Prakashan Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JAGSNPHARM>JAGSNPHARM : Jagsonpal Pharmaceuticals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JAIBALAJI>JAIBALAJI : Jai Balaji Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JAICORPLTD>JAICORPLTD : Jai Corp Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JAIHINDPRO>JAIHINDPRO : Jaihind Projects Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JAINSTUDIO>JAINSTUDIO : Jain Studios Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JAMNAAUTO>JAMNAAUTO : Jamna Auto Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JAYAGROGN>JAYAGROGN : Jayant Agro Organics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JAYBARMARU>JAYBARMARU : Jay Bharat Maruti Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JAYNECOIND>JAYNECOIND : Jayaswal Neco Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JAYSREETEA>JAYSREETEA : Jayshree Tea & Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JBCHEPHARM>JBCHEPHARM : JB Chemicals & Pharmaceuticals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JBFIND>JBFIND : JBF Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JBMA>JBMA : JBM Auto Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JENSONICOL>JENSONICOL : Jenson & Nicholson (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JETAIRWAYS>JETAIRWAYS : Jet Airways (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JHS>JHS : JHS Svendgaard Laboratories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JIKIND>JIKIND : JIK Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JINDALPHOT>JINDALPHOT : Jindal Photo Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JINDALPOLY>JINDALPOLY : Jindal Poly Films Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JINDALSAW>JINDALSAW : Jindal Saw Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JINDALSTEL>JINDALSTEL : Jindal Steel & Power Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JINDCOT>JINDCOT : Jindal Cotex Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JINDRILL>JINDRILL : Jindal Drilling And Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JINDWORLD>JINDWORLD : Jindal Worldwide Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JISLDVREQS>JISLDVREQS : Jain Irrigation Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JISLJALEQS>JISLJALEQS : Jain Irrigation Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JKCEMENT>JKCEMENT : JK Cement Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JKIL>JKIL : J.Kumar Infraprojects Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JKLAKSHMI>JKLAKSHMI : JK Lakshmi Cement Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JKPAPER>JKPAPER : JK Paper Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JKTYRE>JKTYRE : JK Tyre & Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JMA>JMA : Jullundur Motor Agency (Delhi) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JMCPROJECT>JMCPROJECT : JMC Projects (India)  Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JMFINANCIL>JMFINANCIL : JM Financial Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JMTAUTOLTD>JMTAUTOLTD : JMT Auto Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JOCIL>JOCIL : Jocil Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JPASSOCIAT>JPASSOCIAT : Jaiprakash Associates Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JPINFRATEC>JPINFRATEC : Jaypee Infratech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JPOLYINVST>JPOLYINVST : Jindal Poly Investment and Finance Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JPPOWER>JPPOWER : Jaiprakash Power Ventures Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JSL>JSL : Jindal Stainless Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JSLHISAR>JSLHISAR : Jindal Stainless (Hisar) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JSWENERGY>JSWENERGY : JSW Energy Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JSWHL>JSWHL : JSW Holdings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JSWSTEEL>JSWSTEEL : JSW Steel Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JUBILANT>JUBILANT : Jubilant Life Sciences Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JUBLFOOD>JUBLFOOD : Jubilant Foodworks Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JUBLINDS>JUBLINDS : Jubilant Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JUSTDIAL>JUSTDIAL : Just Dial Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JVLAGRO>JVLAGRO : JVL Agro Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JYOTHYLAB>JYOTHYLAB : Jyothy Laboratories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=JYOTISTRUC>JYOTISTRUC : Jyoti Structures Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KABRAEXTRU>KABRAEXTRU : Kabra Extrusion Technik Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KAJARIACER>KAJARIACER : Kajaria Ceramics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KAKATCEM>KAKATCEM : Kakatiya Cement Sugar & Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KALINDEE>KALINDEE : Kalindee Rail Nirman (Engineers) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KALPATPOWR>KALPATPOWR : Kalpataru Power Transmission Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KALYANIFRG>KALYANIFRG : Kalyani Forge Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KAMATHOTEL>KAMATHOTEL : Kamat Hotels (I) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KAMDHENU>KAMDHENU : Kamdhenu Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KANANIIND>KANANIIND : Kanani Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KANORICHEM>KANORICHEM : Kanoria Chemicals & Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KANSAINER>KANSAINER : Kansai Nerolac Paints Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KARMAENG>KARMAENG : Karma Energy Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KARURVYSYA>KARURVYSYA : Karur Vysya Bank Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KAUSHALYA>KAUSHALYA : Kaushalya Infrastructure Development Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KAVVERITEL>KAVVERITEL : Kavveri Telecom Products Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KAYA>KAYA : Kaya Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KCP>KCP : KCP Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KCPSUGIND>KCPSUGIND : KCP Sugar and Industries Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KDDL>KDDL : KDDL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KEC>KEC : KEC International Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KECL>KECL : Kirloskar Electric Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KEI>KEI : KEI Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KELLTONTEC>KELLTONTEC : Kellton Tech Solutions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KEMROCK>KEMROCK : Kemrock Industries and Exports Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KERNEX>KERNEX : Kernex Microsystems (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KESARENT>KESARENT : Kesar Enterprises Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KESORAMIND>KESORAMIND : Kesoram Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KEYCORPSER>KEYCORPSER : Keynote Corporate Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KGL>KGL : Karuturi Global Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KHAITANELE>KHAITANELE : Khaitan Electricals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KHAITANLTD>KHAITANLTD : Khaitan (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KHANDSE>KHANDSE : Khandwala Securities Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KICL>KICL : Kalyani Investment Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KILITCH>KILITCH : Kilitch Drugs (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KIRIINDUS>KIRIINDUS : Kiri Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KIRLOSBROS>KIRLOSBROS : Kirloskar Brothers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KIRLOSENG>KIRLOSENG : Kirloskar Oil Engines Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KIRLOSIND>KIRLOSIND : Kirloskar Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KITEX>KITEX : Kitex Garments Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KKCL>KKCL : Kewal Kiran Clothing Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KMSUGAR>KMSUGAR : K.M.Sugar Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KNRCON>KNRCON : KNR Constructions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KOHINOOR>KOHINOOR : Kohinoor Foods Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KOKUYOCMLN>KOKUYOCMLN : Kokuyo Camlin Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KOLTEPATIL>KOLTEPATIL : Kolte - Patil Developers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KOPRAN>KOPRAN : Kopran Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KOTAKBANK>KOTAKBANK : Kotak Mahindra Bank Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KOTARISUG>KOTARISUG : Kothari Sugars And Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KOTHARIPET>KOTHARIPET : Kothari Petrochemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KOTHARIPRO>KOTHARIPRO : Kothari Products Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KPIT>KPIT : KPIT Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KPRMILL>KPRMILL : K.P.R. Mill Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KRBL>KRBL : KRBL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KRIDHANINF>KRIDHANINF : Kridhan Infra Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KSBPUMPS>KSBPUMPS : KSB Pumps Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KSCL>KSCL : Kaveri Seed Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KSERASERA>KSERASERA : KSS Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KSK>KSK : KSK Energy Ventures Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KSL>KSL : Kalyani Steels Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KTIL>KTIL : Kesar Terminals & Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KTKBANK>KTKBANK : The Karnataka Bank Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=KWALITY>KWALITY : kwality limited</option>
+    <option value=https://www.google.com/finance/getchart?q=L&TFH>L&TFH : L&T Finance Holdings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LAKPRE>LAKPRE : Lakshmi Precision Screws Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LAKSHMIEFL>LAKSHMIEFL : Lakshmi Energy and Foods Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LAKSHVILAS>LAKSHVILAS : Lakshmi Vilas Bank Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LALPATHLAB>LALPATHLAB : Dr. Lal Path Labs Ltd.</option>
+    <option value=https://www.google.com/finance/getchart?q=LAMBODHARA>LAMBODHARA : Lambodhara Textiles Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LAOPALA>LAOPALA : La Opala RG Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LAXMIMACH>LAXMIMACH : Lakshmi Machine Works Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LCCINFOTEC>LCCINFOTEC : LCC Infotech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LFIC>LFIC : Lakshmi Finance & Industrial Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LGBBROSLTD>LGBBROSLTD : LG Balakrishnan & Bros Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LGBFORGE>LGBFORGE : LGB Forge Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LIBERTSHOE>LIBERTSHOE : Liberty Shoes Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LICHSGFIN>LICHSGFIN : LIC Housing Finance Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LINCOLN>LINCOLN : Lincoln Pharmaceuticals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LINCPEN>LINCPEN : Linc Pen & Plastics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LINDEINDIA>LINDEINDIA : Linde India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LITL>LITL : Lanco Infratech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LLOYDELENG>LLOYDELENG : Lloyd Electric & Engineering Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LML>LML : LML Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LOKESHMACH>LOKESHMACH : Lokesh Machines Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LOTUSEYE>LOTUSEYE : Lotus Eye Care Hospital Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LOVABLE>LOVABLE : Lovable Lingerie Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LPDC>LPDC : Landmark Property Development Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LT>LT : Larsen & Toubro Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LUMAXAUTO>LUMAXAUTO : Lumax Automotive Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LUMAXIND>LUMAXIND : Lumax Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LUMAXTECH>LUMAXTECH : Lumax Auto Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LUPIN>LUPIN : Lupin Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LUXIND>LUXIND : Lux Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LYCOS>LYCOS : Lycos Internet Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LYKALABS>LYKALABS : Lyka Labs Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=LYPSAGEMS>LYPSAGEMS : Lypsa Gems & Jewellery Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=M&M>M&M : Mahindra & Mahindra Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=M&MFIN>M&MFIN : Mahindra & Mahindra Financial Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MAANALU>MAANALU : Maan Aluminium Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MADHAV>MADHAV : Madhav Marbles and Granites Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MADHUCON>MADHUCON : Madhucon Projects Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MADRASFERT>MADRASFERT : Madras Fertilizers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MAGMA>MAGMA : Magma Fincorp Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MAGNUM>MAGNUM : Magnum Ventures Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MAHABANK>MAHABANK : Bank of Maharashtra</option>
+    <option value=https://www.google.com/finance/getchart?q=MAHINDCIE>MAHINDCIE : Mahindra CIE Automotive Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MAHLIFE>MAHLIFE : Mahindra Lifespace Developers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MAHSCOOTER>MAHSCOOTER : Maharashtra Scooters Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MAHSEAMLES>MAHSEAMLES : Maharashtra Seamless Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MAITHANALL>MAITHANALL : Maithan Alloys Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MAJESCO>MAJESCO : Majesco Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MALUPAPER>MALUPAPER : Malu Paper Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MALWACOTT>MALWACOTT : Malwa Cotton Spg. Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MANAKALUCO>MANAKALUCO : Manaksia Aluminium Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MANAKCOAT>MANAKCOAT : Manaksia Coated Metals & Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MANAKINDST>MANAKINDST : Manaksia Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MANAKSIA>MANAKSIA : Manaksia Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MANAKSTEEL>MANAKSTEEL : Manaksia Steels Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MANALIPETC>MANALIPETC : Manali Petrochemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MANAPPURAM>MANAPPURAM : Manappuram Finance Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MANDHANA>MANDHANA : Mandhana Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MANGALAM>MANGALAM : Mangalam Drugs And Organics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MANGCHEFER>MANGCHEFER : Mangalore Chemicals & Fertilizers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MANGLMCEM>MANGLMCEM : Mangalam Cement Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MANGTIMBER>MANGTIMBER : Mangalam Timber Products Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MANINDS>MANINDS : Man Industries (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MANINFRA>MANINFRA : Man Infraconstruction Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MANPASAND>MANPASAND : Manpasand Beverages Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MANUGRAPH>MANUGRAPH : Manugraph India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MARALOVER>MARALOVER : Maral Overseas Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MARICO>MARICO : Marico Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MARKSANS>MARKSANS : Marksans Pharma Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MARUTI>MARUTI : Maruti Suzuki India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MASTEK>MASTEK : Mastek Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MAWANASUG>MAWANASUG : Mawana Sugars Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MAXWELL>MAXWELL : Maxwell Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MAYURUNIQ>MAYURUNIQ : Mayur Uniquoters Ltd</option>
+    <option value=https://www.google.com/finance/getchart?q=MBECL>MBECL : Mcnally Bharat Engineering Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MBLINFRA>MBLINFRA : MBL Infrastructures Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MCDHOLDING>MCDHOLDING : McDowell Holdings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MCDOWELL-N>MCDOWELL-N : United Spirits Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MCLEODRUSS>MCLEODRUSS : Mcleod Russel India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MCX>MCX : Multi Commodity Exchange of India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MEGASOFT>MEGASOFT : Megasoft Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MEGH>MEGH : Meghmani Organics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MELSTAR>MELSTAR : Melstar Information Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MENONBE>MENONBE : Menon Bearings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MEP>MEP : MEP Infrastructure Developers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MERCATOR>MERCATOR : Mercator Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MERCK>MERCK : Merck Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=METALFORGE>METALFORGE : Metalyst Forgings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=METKORE>METKORE : Metkore Alloys & Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MFSL>MFSL : Max Financial Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MHRIL>MHRIL : Mahindra Holidays & Resorts India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MIC>MIC : MIC Electronics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MICROSEC>MICROSEC : Microsec Financial Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MINDACORP>MINDACORP : Minda Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MINDAIND>MINDAIND : Minda Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MINDTREE>MINDTREE : MindTree Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MIRCELECTR>MIRCELECTR : MIRC Electronics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MIRZAINT>MIRZAINT : Mirza International Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MMFL>MMFL : MM Forgings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MMTC>MMTC : MMTC Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MOHITIND>MOHITIND : Mohit Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MOIL>MOIL : MOIL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MOLDTKPAC>MOLDTKPAC : Mold-Tek Packaging Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MONNETISPA>MONNETISPA : Monnet Ispat and Energy Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MONSANTO>MONSANTO : Monsanto India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MONTECARLO>MONTECARLO : Monte Carlo Fashions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MORARJEE>MORARJEE : Morarjee Textiles Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MOREPENLAB>MOREPENLAB : Morepen Laboratories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MOSERBAER>MOSERBAER : Moser-Baer (I) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MOTHERSUMI>MOTHERSUMI : Motherson Sumi Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MOTILALOFS>MOTILALOFS : Motilal Oswal Financial Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MOTOGENFIN>MOTOGENFIN : The Motor & General Finance Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MPHASIS>MPHASIS : MphasiS Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MPSLTD>MPSLTD : MPS Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MRF>MRF : MRF Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MRO-TEK>MRO-TEK : MRO-TEK Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MRPL>MRPL : Mangalore Refinery and Petrochemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MSPL>MSPL : MSP Steel & Power Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MTEDUCARE>MTEDUCARE : MT Educare Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MTNL>MTNL : Mahanagar Telephone Nigam Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MUKANDENGG>MUKANDENGG : Mukand Engineers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MUKANDLTD>MUKANDLTD : Mukand Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MUKTAARTS>MUKTAARTS : Mukta Arts Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MUNJALAU>MUNJALAU : Munjal Auto Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MUNJALSHOW>MUNJALSHOW : Munjal Showa Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MURUDCERA>MURUDCERA : Murudeshwar Ceramics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MUTHOOTCAP>MUTHOOTCAP : Muthoot Capital Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MUTHOOTFIN>MUTHOOTFIN : Muthoot Finance Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MVL>MVL : MVL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=MYSOREBANK>MYSOREBANK : State Bank of Mysore</option>
+    <option value=https://www.google.com/finance/getchart?q=NAGAROIL>NAGAROIL : Nagarjuna Oil Refinery Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NAGREEKCAP>NAGREEKCAP : Nagreeka Capital & Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NAGREEKEXP>NAGREEKEXP : Nagreeka Exports Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NAHARCAP>NAHARCAP : Nahar Capital and Financial Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NAHARINDUS>NAHARINDUS : Nahar Industrial Enterprises Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NAHARPOLY>NAHARPOLY : Nahar Poly Films Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NAHARSPING>NAHARSPING : Nahar Spinning Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NAKODA>NAKODA : Nakoda Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NATCOPHARM>NATCOPHARM : Natco Pharma Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NATHBIOGEN>NATHBIOGEN : Nath Bio-Genes (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NATIONALUM>NATIONALUM : National Aluminium Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NATNLSTEEL>NATNLSTEEL : National Steel And Agro Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NAUKRI>NAUKRI : Info Edge (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NAVINFLUOR>NAVINFLUOR : Navin Fluorine International Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NAVKARCORP>NAVKARCORP : Navkar Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NAVNETEDUL>NAVNETEDUL : Navneet Education Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NBCC>NBCC : NBCC (INDIA) LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=NBVENTURES>NBVENTURES : Nava Bharat Ventures Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NCC>NCC : NCC Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NCLIND>NCLIND : NCL Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NDL>NDL : Nandan Denim Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NDTV>NDTV : New Delhi Television Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NECCLTD>NECCLTD : North Eastern Carrying Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NECLIFE>NECLIFE : Nectar Lifesciences Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NELCAST>NELCAST : Nelcast Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NELCO>NELCO : NELCO Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NEPCMICON>NEPCMICON : NEPC India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NESCO>NESCO : Nesco Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NESTLEIND>NESTLEIND : Nestle India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NET4>NET4 : Net 4 India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NETWORK18>NETWORK18 : Network18 Media & Investments Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NEULANDLAB>NEULANDLAB : Neuland Laboratories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NEXTMEDIA>NEXTMEDIA : Next Mediaworks Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NEYVELILIG>NEYVELILIG : Neyveli Lignite Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NFL>NFL : National Fertilizers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NGCT>NGCT : Northgate Com Tech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NH>NH : Narayana Hrudayalaya Ltd.</option>
+    <option value=https://www.google.com/finance/getchart?q=NHPC>NHPC : NHPC Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NIBL>NIBL : NRB Industrial Bearings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NICCO>NICCO : Nicco Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NIITLTD>NIITLTD : NIIT Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NIITTECH>NIITTECH : NIIT Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NILAINFRA>NILAINFRA : Nila Infrastructures Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NILKAMAL>NILKAMAL : Nilkamal Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NIPPOBATRY>NIPPOBATRY : Indo-National Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NIRVIKARA>NIRVIKARA : Nirvikara Paper Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NITCO>NITCO : Nitco Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NITESHEST>NITESHEST : Nitesh Estates Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NITINFIRE>NITINFIRE : Nitin Fire Protection Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NITINSPIN>NITINSPIN : Nitin Spinners Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NKIND>NKIND : NK Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NMDC>NMDC : NMDC Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NOCIL>NOCIL : NOCIL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NOESISIND>NOESISIND : Noesis Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NOIDATOLL>NOIDATOLL : Noida Toll Bridge Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NORBTEAEXP>NORBTEAEXP : Norben Tea & Exports Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NRBBEARING>NRBBEARING : NRB Bearing Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NSIL>NSIL : Nalwa Sons Investments Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NTPC>NTPC : NTPC Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NUCLEUS>NUCLEUS : Nucleus Software Exports Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=NUTEK>NUTEK : Nu Tek India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=OBEROIRLTY>OBEROIRLTY : Oberoi Realty Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=OCCL>OCCL : Oriental Carbon & Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=OCL>OCL : OCL India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=OFSS>OFSS : Oracle Financial Services Software Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=OIL>OIL : Oil India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=OILCOUNTUB>OILCOUNTUB : Oil Country Tubular Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=OISL>OISL : OCL Iron and Steel Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=OMAXAUTO>OMAXAUTO : Omax Autos Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=OMAXE>OMAXE : Omaxe Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=OMKARCHEM>OMKARCHEM : Omkar Speciality Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=OMMETALS>OMMETALS : OM Metals Infraprojects Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=OMNITECH>OMNITECH : Omnitech Infosolutions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ONELIFECAP>ONELIFECAP : Onelife Capital Advisors Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ONGC>ONGC : Oil & Natural Gas Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ONMOBILE>ONMOBILE : OnMobile Global Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ONWARDTEC>ONWARDTEC : Onward Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=OPTOCIRCUI>OPTOCIRCUI : Opto Circuits (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ORBITCORP>ORBITCORP : Orbit Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ORBTEXP>ORBTEXP : Orbit Exports Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ORCHIDPHAR>ORCHIDPHAR : Orchid Pharma Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ORICONENT>ORICONENT : Oricon Enterprises Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ORIENTABRA>ORIENTABRA : Orient Abrasives Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ORIENTALTL>ORIENTALTL : Oriental Trimex Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ORIENTBANK>ORIENTBANK : Oriental Bank of Commerce</option>
+    <option value=https://www.google.com/finance/getchart?q=ORIENTBELL>ORIENTBELL : Orient Bell Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ORIENTCEM>ORIENTCEM : Orient Cement Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ORIENTHOT>ORIENTHOT : Oriental Hotels Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ORIENTLTD>ORIENTLTD : Orient Press Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ORIENTPPR>ORIENTPPR : Orient Paper & Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ORIENTREF>ORIENTREF : Orient Refractories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ORISSAMINE>ORISSAMINE : The Orissa Minerals Development Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ORTEL>ORTEL : Ortel Communications Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ORTINLABSS>ORTINLABSS : Ortin Laboratories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=OUDHSUG>OUDHSUG : The Oudh Sugar Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PAEL>PAEL : PAE Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PAGEIND>PAGEIND : Page Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PALREDTEC>PALREDTEC : Palred Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PANACEABIO>PANACEABIO : Panacea Biotec Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PANAMAPET>PANAMAPET : Panama Petrochem Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PANORAMUNI>PANORAMUNI : Panoramic Universal Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PAPERPROD>PAPERPROD : Huhtamaki PPL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PARABDRUGS>PARABDRUGS : Parabolic Drugs Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PARACABLES>PARACABLES : Paramount Communications Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PARAGMILK>PARAGMILK : Parag Milk Foods Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PARAPRINT>PARAPRINT : Paramount Printpackaging Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PARASPETRO>PARASPETRO : Paras Petrofils Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PARRYSUGAR>PARRYSUGAR : Parrys Sugar Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PARSVNATH>PARSVNATH : Parsvnath Developers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PATELENG>PATELENG : Patel Engineering Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PATINTLOG>PATINTLOG : Patel Integrated Logistics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PATSPINLTD>PATSPINLTD : Patspin India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PBAINFRA>PBAINFRA : PBA Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PCJEWELLER>PCJEWELLER : PC Jeweller Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PDMJEPAPER>PDMJEPAPER : Pudumjee Paper Products Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PDPL>PDPL : Parenteral Drugs (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PDSMFL>PDSMFL : PDS Multinational Fashions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PDUMJEIND>PDUMJEIND : Pudumjee Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PDUMJEPULP>PDUMJEPULP : Pudumjee Pulp & Paper Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PEARLPOLY>PEARLPOLY : Pearl Polymers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PEL>PEL : Piramal Enterprises Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PENIND>PENIND : Pennar Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PENINLAND>PENINLAND : Peninsula Land Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PENPEBS>PENPEBS : Pennar Engineered Building Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PERSISTENT>PERSISTENT : Persistent Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PETRONENGG>PETRONENGG : Petron Engineering Construction Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PETRONET>PETRONET : Petronet LNG Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PFC>PFC : Power Finance Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PFIZER>PFIZER : Pfizer Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PFOCUS>PFOCUS : Prime Focus Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PFS>PFS : PTC India Financial Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PGEL>PGEL : PG Electroplast Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PGHH>PGHH : Procter & Gamble Hygiene and Health Care Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PGIL>PGIL : Pearl Global Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PHILIPCARB>PHILIPCARB : Phillips Carbon Black Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PHOENIXLL>PHOENIXLL : Phoenix Lamps Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PHOENIXLTD>PHOENIXLTD : The Phoenix Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PIDILITIND>PIDILITIND : Pidilite Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PIIND>PIIND : PI Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PILANIINVS>PILANIINVS : Pilani Investment and Industries Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PILITA>PILITA : PIL ITALICA LIFESTYLE LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=PIONDIST>PIONDIST : Pioneer Distilleries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PIONEEREMB>PIONEEREMB : Pioneer Embroideries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PIRPHYTO>PIRPHYTO : Piramal Phytocare Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PITTILAM>PITTILAM : Pitti Laminations Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PKTEA>PKTEA : The Peria Karamalai Tea & Produce Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PLASTIBLEN>PLASTIBLEN : Plastiblends India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PNB>PNB : Punjab National Bank</option>
+    <option value=https://www.google.com/finance/getchart?q=PNBGILTS>PNBGILTS : PNB Gilts Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PNC>PNC : Pritish Nandy Communications Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PNCINFRA>PNCINFRA : PNC Infratech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PNEUMATIC>PNEUMATIC : Pneumatic Holdings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=POCHIRAJU>POCHIRAJU : Pochiraju Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=POLARIS>POLARIS : POLARIS CONSULTING & SERVICES LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=POLYMED>POLYMED : Poly Medicure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=POLYPLEX>POLYPLEX : Polyplex Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PONNIERODE>PONNIERODE : Ponni Sugars (Erode) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=POWERGRID>POWERGRID : Power Grid Corporation of India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=POWERMECH>POWERMECH : Power Mech Projects Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PPAP>PPAP : PPAP Automotive Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PRABHAT>PRABHAT : Prabhat Dairy Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PRADIP>PRADIP : Pradip Overseas Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PRAENG>PRAENG : Prajay Engineers Syndicate Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PRAJIND>PRAJIND : Praj Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PRAKASH>PRAKASH : Prakash Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PRAKASHCON>PRAKASHCON : Prakash Constrowell Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PRAKASHSTL>PRAKASHSTL : Prakash Steelage Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PRATIBHA>PRATIBHA : Pratibha Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PRECAM>PRECAM : Precision Camshafts Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PRECOT>PRECOT : Precot Meridian Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PRECWIRE>PRECWIRE : Precision Wires India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PREMIER>PREMIER : Premier Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PREMIERPOL>PREMIERPOL : Premier Polyfilm Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PRESSMN>PRESSMN : Pressman Advertising Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PRESTIGE>PRESTIGE : Prestige Estates Projects Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PRICOL>PRICOL : Pricol Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PRIMESECU>PRIMESECU : Prime Securities Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PRISMCEM>PRISMCEM : Prism Cement Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PROVOGE>PROVOGE : Provogue (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PROZONINTU>PROZONINTU : Prozone Intu Properties Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PSB>PSB : Punjab & Sind Bank</option>
+    <option value=https://www.google.com/finance/getchart?q=PSL>PSL : PSL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PTC>PTC : PTC India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PTL>PTL : PTL Enterprises Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PUNJABCHEM>PUNJABCHEM : Punjab Chemicals & Crop Protection Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PUNJLLOYD>PUNJLLOYD : Punj Lloyd Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PURVA>PURVA : Puravankara Projects Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PVP>PVP : PVP Ventures Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=PVR>PVR : PVR Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=QUICKHEAL>QUICKHEAL : Quick Heal Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=QUINTEGRA>QUINTEGRA : Quintegra Solutions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RADAAN>RADAAN : Radaan Mediaworks India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RADICO>RADICO : Radico Khaitan Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAIN>RAIN : Rain Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAINBOWPAP>RAINBOWPAP : Rainbow Papers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAIREKMOH>RAIREKMOH : Raisaheb Reckhchand Mohota Spinning & Weaving Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAJESHEXPO>RAJESHEXPO : Rajesh Exports Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAJOIL>RAJOIL : Raj Oil Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAJRAYON>RAJRAYON : Raj Rayon Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAJSREESUG>RAJSREESUG : Rajshree Sugars & Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAJTV>RAJTV : Raj Television Network Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAJVIR>RAJVIR : Rajvir Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RALLIS>RALLIS : Rallis India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAMANEWS>RAMANEWS : Shree Rama Newsprint Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAMASTEEL>RAMASTEEL : Rama Steel Tubes Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAMCOCEM>RAMCOCEM : The Ramco Cements Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAMCOIND>RAMCOIND : Ramco Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAMCOSYS>RAMCOSYS : Ramco Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAMKY>RAMKY : Ramky Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAMSARUP>RAMSARUP : Ramsarup Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RANASUG>RANASUG : Rana Sugars Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RANEENGINE>RANEENGINE : Rane Engine Valve Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RANEHOLDIN>RANEHOLDIN : Rane Holdings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RASOYPR>RASOYPR : Rasoya Proteins Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RATNAMANI>RATNAMANI : Ratnamani Metals & Tubes Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RAYMOND>RAYMOND : Raymond Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RBL>RBL : Rane Brake Lining Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RCF>RCF : Rashtriya Chemicals and Fertilizers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RCOM>RCOM : Reliance Communications Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RDEL>RDEL : Reliance Defence and Engineering Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RECLTD>RECLTD : Rural Electrification Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=REDINGTON>REDINGTON : Redington (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=REFEX>REFEX : Refex Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=REGENCERAM>REGENCERAM : Regency Ceramics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=REIAGROLTD>REIAGROLTD : Rei Agro Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=REISIXTEN>REISIXTEN : REI Six Ten Retail Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RELAXO>RELAXO : Relaxo Footwears Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RELCAPITAL>RELCAPITAL : Reliance Capital Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RELIANCE>RELIANCE : Reliance Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RELIGARE>RELIGARE : Religare Enterprises Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RELINFRA>RELINFRA : Reliance Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=REMSONSIND>REMSONSIND : Remsons Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RENUKA>RENUKA : Shree Renuka Sugars Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=REPCOHOME>REPCOHOME : Repco Home Finance Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=REPRO>REPRO : Repro India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RESPONIND>RESPONIND : Responsive Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=REVATHI>REVATHI : Revathi Equipment Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RICOAUTO>RICOAUTO : Rico Auto Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RIIL>RIIL : Reliance Industrial Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RJL>RJL : Renaissance Jewellery Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RKDL>RKDL : Ravi Kumar Distilleries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RKFORGE>RKFORGE : Ramkrishna Forgings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RMCL>RMCL : Radha Madhav Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RML>RML : Rane (Madras) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RMMIL>RMMIL : Resurgere Mines & Minerals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ROHITFERRO>ROHITFERRO : Rohit Ferro-Tech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ROHLTD>ROHLTD : Royal Orchid Hotels Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ROLTA>ROLTA : Rolta India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ROSSELLIND>ROSSELLIND : Rossell India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RPGLIFE>RPGLIFE : RPG Life Sciences Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RPOWER>RPOWER : Reliance Power Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RPPINFRA>RPPINFRA : R.P.P. Infra Projects Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RSSOFTWARE>RSSOFTWARE : R. S. Software (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RSWM>RSWM : RSWM Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RSYSTEMS>RSYSTEMS : R Systems International Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RTNINFRA>RTNINFRA : RattanIndia Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RTNPOWER>RTNPOWER : RattanIndia Power Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RUBYMILLS>RUBYMILLS : The Ruby Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RUCHINFRA>RUCHINFRA : Ruchi Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RUCHIRA>RUCHIRA : Ruchira Papers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RUCHISOYA>RUCHISOYA : Ruchi Soya Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RUPA>RUPA : Rupa & Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=RUSHIL>RUSHIL : Rushil Decor Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SABTN>SABTN : Sri Adhikari Brothers Television Network Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SADBHAV>SADBHAV : Sadbhav Engineering Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SADBHIN>SADBHIN : Sadbhav Infrastructure Project Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SAGCEM>SAGCEM : Sagar Cements Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SAIL>SAIL : Steel Authority of India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SAKHTISUG>SAKHTISUG : Sakthi Sugars Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SAKSOFT>SAKSOFT : Saksoft Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SAKUMA>SAKUMA : Sakuma Exports Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SALORAINTL>SALORAINTL : Salora International Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SALSTEEL>SALSTEEL : S.A.L. Steel Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SALZERELEC>SALZERELEC : Salzer Electronics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SAMBHAAV>SAMBHAAV : Sambhaav Media Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SAMTEL>SAMTEL : Samtel Color Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SANDESH>SANDESH : The Sandesh Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SANGAMIND>SANGAMIND : Sangam (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SANGHIIND>SANGHIIND : Sanghi Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SANGHVIFOR>SANGHVIFOR : Sanghvi Forging and Engineering Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SANGHVIMOV>SANGHVIMOV : Sanghvi Movers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SANOFI>SANOFI : Sanofi India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SANWARIA>SANWARIA : Sanwaria Agro Oils Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SARDAEN>SARDAEN : Sarda Energy & Minerals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SAREGAMA>SAREGAMA : Saregama India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SARLAPOLY>SARLAPOLY : Sarla Performance Fibers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SASKEN>SASKEN : Sasken Communication Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SATHAISPAT>SATHAISPAT : Sathavahana Ispat Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SATIN>SATIN : Satin Creditcare Network Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SBBJ>SBBJ : State Bank of Bikaner and Jaipur</option>
+    <option value=https://www.google.com/finance/getchart?q=SBIN>SBIN : State Bank of India</option>
+    <option value=https://www.google.com/finance/getchart?q=SBT>SBT : State Bank of Travancore</option>
+    <option value=https://www.google.com/finance/getchart?q=SCHNEIDER>SCHNEIDER : Schneider Electric Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SCI>SCI : Shipping Corporation Of India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SDBL>SDBL : Som Distilleries & Breweries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SEAMECLTD>SEAMECLTD : Seamec Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SEINV>SEINV : S.E. Investments Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SELAN>SELAN : Selan Exploration Technology Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SELMCL>SELMCL : SEL Manufacturing Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SEPOWER>SEPOWER : S.E. Power Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SEQUENT>SEQUENT : Sequent Scientific Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SERVALL>SERVALL : Servalakshmi Paper Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SESHAPAPER>SESHAPAPER : Seshasayee Paper and Boards Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SEZAL>SEZAL : Sezal Glass Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SFCL>SFCL : Star Ferro and Cement Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SGFL>SGFL : Shree Ganesh Forgings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SGJHL>SGJHL : SHREE GANESH JEWELLERY HOUSE (I) LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=SGL>SGL : STL Global Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHAHALLOYS>SHAHALLOYS : Shah Alloys Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHAKTIPUMP>SHAKTIPUMP : Shakti Pumps (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHALPAINTS>SHALPAINTS : Shalimar Paints Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHANTIGEAR>SHANTIGEAR : Shanthi Gears Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHARDACROP>SHARDACROP : Sharda Cropchem Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHARDAMOTR>SHARDAMOTR : Sharda Motor Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHARONBIO>SHARONBIO : Sharon Bio-Medicine Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHEMAROO>SHEMAROO : Shemaroo Entertainment Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHILPAMED>SHILPAMED : Shilpa Medicare Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHILPI>SHILPI : Shilpi Cable Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHIRPUR-G>SHIRPUR-G : Shirpur Gold Refinery Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHIVAMAUTO>SHIVAMAUTO : Shivam Autotech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHIVTEX>SHIVTEX : Shiva Texyarn Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHK>SHK : S H Kelkar and Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHOPERSTOP>SHOPERSTOP : Shoppers Stop Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHREECEM>SHREECEM : Shree Cements Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHREEPUSHK>SHREEPUSHK : Shree Pushkar Chemicals & Fertilisers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHREERAMA>SHREERAMA : Shree Rama Multi-Tech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHRENUJ>SHRENUJ : Shrenuj & Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHREYANIND>SHREYANIND : Shreyans Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHREYAS>SHREYAS : Shreyas Shipping & Logistics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHRIASTER>SHRIASTER : SHRI ASTER SILICATES LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=SHRIPISTON>SHRIPISTON : Shriram Pistons & Rings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHRIRAMCIT>SHRIRAMCIT : Shriram City Union Finance Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHRIRAMEPC>SHRIRAMEPC : Shriram EPC Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHYAMCENT>SHYAMCENT : Shyam Century Ferrous Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SHYAMTEL>SHYAMTEL : Shyam Telecom Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SICAGEN>SICAGEN : Sicagen India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SICAL>SICAL : Sical Logistics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SIEMENS>SIEMENS : Siemens Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SIGNET>SIGNET : Signet Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SIL>SIL : Standard Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SILINV>SILINV : SIL Investments Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SIMBHALS>SIMBHALS : Simbhaoli Sugars Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SIMPLEX>SIMPLEX : Simplex Projects Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SIMPLEXINF>SIMPLEXINF : Simplex Infrastructures Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SINTEX>SINTEX : Sintex Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SITASHREE>SITASHREE : Sita Shree Food Products Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SITICABLE>SITICABLE : Siti Cable Network Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SIYSIL>SIYSIL : Siyaram Silk Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SJVN>SJVN : SJVN Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SKFINDIA>SKFINDIA : SKF India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SKIL>SKIL : SKIL Infrastructure Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SKIPPER>SKIPPER : Skipper Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SKMEGGPROD>SKMEGGPROD : SKM Egg Products Export (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SKSMICRO>SKSMICRO : SKS Microfinance Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SMARTLINK>SMARTLINK : Smartlink Network Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SMLISUZU>SMLISUZU : SML Isuzu Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SMPL>SMPL : Sujana Metal Products Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SMSPHARMA>SMSPHARMA : SMS Pharmaceuticals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SNOWMAN>SNOWMAN : Snowman Logistics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SOBHA>SOBHA : Sobha Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SOFTTECHGR>SOFTTECHGR : Software Technology Group International Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SOLARINDS>SOLARINDS : Solar Industries India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SOMANYCERA>SOMANYCERA : Somany Ceramics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SOMATEX>SOMATEX : Soma Textiles & Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SONASTEER>SONASTEER : Sona Koyo Steering Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SONATSOFTW>SONATSOFTW : Sonata Software Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SOTL>SOTL : Savita Oil Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SOUTHBANK>SOUTHBANK : The South Indian Bank Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SPARC>SPARC : Sun Pharma Advanced Research Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SPECIALITY>SPECIALITY : Speciality Restaurants Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SPECTACLE>SPECTACLE : Spectacle Ventures Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SPENTEX>SPENTEX : Spentex Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SPHEREGSL>SPHEREGSL : Sphere Global Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SPIC>SPIC : Southern Petrochemicals Industries Corporation  Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SPICEMOBI>SPICEMOBI : Spice Mobility Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SPLIL>SPLIL : SPL Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SPMLINFRA>SPMLINFRA : SPML Infra Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SPYL>SPYL : Shekhawati Poly-Yarn Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SQSBFSI>SQSBFSI : SQS India BFSI Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SREEL>SREEL : Sreeleathers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SREINFRA>SREINFRA : SREI Infrastructure Finance Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SRF>SRF : SRF Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SRGINFOTEC>SRGINFOTEC : SRG Infotec (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SRHHYPOLTD>SRHHYPOLTD : Sree Rayalaseema Hi-Strength Hypo Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SRIPIPES>SRIPIPES : Srikalahasthi Pipes Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SRSLTD>SRSLTD : SRS Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SRTRANSFIN>SRTRANSFIN : Shriram Transport Finance Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SSWL>SSWL : Steel Strips Wheels Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=STAR>STAR : Strides Shasun Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=STARPAPER>STARPAPER : Star Paper Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=STCINDIA>STCINDIA : The State Trading Corporation of India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=STEL>STEL : Stel Holdings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=STERLINBIO>STERLINBIO : Sterling Biotech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=STERTOOLS>STERTOOLS : Sterling Tools Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=STINDIA>STINDIA : STI India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=STOREONE>STOREONE : Store One Retail India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=STRTECH>STRTECH : Sterlite Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUBEX>SUBEX : Subex Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUBROS>SUBROS : Subros Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUDAR>SUDAR : Sudar Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUDARSCHEM>SUDARSCHEM : Sudarshan Chemical Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUJANATWR>SUJANATWR : Sujana Tower Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUJANAUNI>SUJANAUNI : Sujana Universal Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUMEETINDS>SUMEETINDS : Sumeet Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUMMITSEC>SUMMITSEC : Summit Securities Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUNCLAYLTD>SUNCLAYLTD : Sundaram Clayton Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUNDARAM>SUNDARAM : Sundaram Multi Pap Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUNDARMFIN>SUNDARMFIN : Sundaram Finance Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUNDRMBRAK>SUNDRMBRAK : Sundaram Brake Linings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUNDRMFAST>SUNDRMFAST : Sundram Fasteners Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUNFLAG>SUNFLAG : Sunflag Iron And Steel Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUNILHITEC>SUNILHITEC : Sunil Hitech Engineers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUNPHARMA>SUNPHARMA : Sun Pharmaceuticals Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUNTECK>SUNTECK : Sunteck Realty Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUNTV>SUNTV : Sun TV Network Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUPERHOUSE>SUPERHOUSE : Superhouse Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUPERSPIN>SUPERSPIN : Super Spinning Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUPPETRO>SUPPETRO : Supreme Petrochem Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUPRAJIT>SUPRAJIT : Suprajit Engineering Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUPREMEIND>SUPREMEIND : Supreme Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUPREMEINF>SUPREMEINF : Supreme Infrastructure India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUPREMETEX>SUPREMETEX : Supreme Tex Mart Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SURANACORP>SURANACORP : Surana Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SURANAIND>SURANAIND : Surana Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SURANASOL>SURANASOL : SURANA SOLAR LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=SURANAT&P>SURANAT&P : Surana Telecom and Power Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SURYAJYOTI>SURYAJYOTI : Suryajyoti Spinning Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SURYALAXMI>SURYALAXMI : Suryalakshmi Cotton Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SURYAROSNI>SURYAROSNI : Surya Roshni Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUTLEJTEX>SUTLEJTEX : Sutlej Textiles and Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUVEN>SUVEN : Suven Life Sciences Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SUZLON>SUZLON : Suzlon Energy Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SVOGL>SVOGL : SVOGL OIL GAS AND ENERGY LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=SWANENERGY>SWANENERGY : Swan Energy Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SWARAJENG>SWARAJENG : Swaraj Engines Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SWELECTES>SWELECTES : Swelect Energy Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SYMBOL>SYMBOL : NAME OF COMPANY</option>
+    <option value=https://www.google.com/finance/getchart?q=SYMPHONY>SYMPHONY : Symphony Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SYNCOM>SYNCOM : Syncom Healthcare Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=SYNDIBANK>SYNDIBANK : Syndicate Bank</option>
+    <option value=https://www.google.com/finance/getchart?q=SYNGENE>SYNGENE : Syngene International Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TAINWALCHM>TAINWALCHM : Tainwala Chemical and Plastic (I) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TAJGVK>TAJGVK : Taj GVK Hotels & Resorts Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TAKE>TAKE : Take Solutions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TALBROAUTO>TALBROAUTO : Talbros Automotive Components Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TALWALKARS>TALWALKARS : Talwalkars Better Value Fitness Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TANLA>TANLA : Tanla Solutions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TANTIACONS>TANTIACONS : Tantia Constructions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TARAJEWELS>TARAJEWELS : Tara Jewels Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TARAPUR>TARAPUR : Tarapur Transformers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TARMAT>TARMAT : Tarmat Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TATACHEM>TATACHEM : Tata Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TATACOFFEE>TATACOFFEE : Tata Coffee Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TATACOMM>TATACOMM : Tata Communications Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TATAELXSI>TATAELXSI : Tata Elxsi Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TATAGLOBAL>TATAGLOBAL : Tata Global Beverages Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TATAINVEST>TATAINVEST : Tata Investment Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TATAMETALI>TATAMETALI : Tata Metaliks Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TATAMOTORS>TATAMOTORS : Tata Motors Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TATAMTRDVR>TATAMTRDVR : Tata Motors Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TATAPOWER>TATAPOWER : Tata Power Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TATASPONGE>TATASPONGE : Tata Sponge Iron Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TATASTEEL>TATASTEEL : Tata Steel Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TBZ>TBZ : Tribhovandas Bhimji Zaveri Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TCI>TCI : Transport Corporation of India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TCIDEVELOP>TCIDEVELOP : TCI Developers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TCIFINANCE>TCIFINANCE : TCI Finance Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TCS>TCS : Tata Consultancy Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TDPOWERSYS>TDPOWERSYS : TD Power Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TEAMLEASE>TEAMLEASE : Teamlease Services Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TECHIN>TECHIN : TECHINDIA NIRMAN LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=TECHM>TECHM : Tech Mahindra Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TECHNO>TECHNO : Techno Electric & Engineering Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TECHNOFAB>TECHNOFAB : Technofab Engineering Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TEXINFRA>TEXINFRA : Texmaco Infrastructure & Holdings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TEXMOPIPES>TEXMOPIPES : Texmo Pipes and Products Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TEXRAIL>TEXRAIL : Texmaco Rail & Engineering Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TFCILTD>TFCILTD : Tourism Finance Corporation of India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TFL>TFL : Transwarranty Finance Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TGBHOTELS>TGBHOTELS : TGB BANQUETS AND HOTELS LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=THANGAMAYL>THANGAMAYL : Thangamayil Jewellery Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=THEMISMED>THEMISMED : Themis Medicare Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=THERMAX>THERMAX : Thermax Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=THIRUSUGAR>THIRUSUGAR : Thiru Arooran Sugars Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=THOMASCOOK>THOMASCOOK : Thomas Cook  (India)  Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=THOMASCOTT>THOMASCOTT : Thomas Scott (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=THYROCARE>THYROCARE : Thyrocare Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TI>TI : Tilaknagar Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TIDEWATER>TIDEWATER : Tide Water Oil Company (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TIIL>TIIL : Technocraft Industries (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TIJARIA>TIJARIA : Tijaria Polypipes Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TIL>TIL : TIL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TIMESGTY>TIMESGTY : Times Guaranty Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TIMETECHNO>TIMETECHNO : Time Technoplast Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TIMKEN>TIMKEN : Timken India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TINPLATE>TINPLATE : The Tinplate Company of India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TIPSINDLTD>TIPSINDLTD : TIPS Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TIRUMALCHM>TIRUMALCHM : Thirumalai Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TITAN>TITAN : Titan Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TNPETRO>TNPETRO : Tamilnadu PetroProducts Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TNPL>TNPL : Tamil Nadu Newsprint & Papers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TNTELE>TNTELE : Tamilnadu Telecommunication Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TODAYS>TODAYS : Todays Writing Instruments Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TOKYOPLAST>TOKYOPLAST : Tokyo Plast International Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TORNTPHARM>TORNTPHARM : Torrent Pharmaceuticals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TORNTPOWER>TORNTPOWER : Torrent Power Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TPLPLASTEH>TPLPLASTEH : TPL Plastech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TREEHOUSE>TREEHOUSE : Tree House Education & Accessories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TRENT>TRENT : Trent Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TRF>TRF : TRF Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TRICOM>TRICOM : Tricom India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TRIDENT>TRIDENT : Trident Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TRIGYN>TRIGYN : Trigyn Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TRIL>TRIL : Transformers And Rectifiers (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TRITURBINE>TRITURBINE : Triveni Turbine Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TRIVENI>TRIVENI : Triveni Engineering & Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TTKHLTCARE>TTKHLTCARE : TTK Healthcare Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TTKPRESTIG>TTKPRESTIG : TTK Prestige Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TTL>TTL : T T Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TTML>TTML : Tata Teleservices (Maharashtra) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TUBEINVEST>TUBEINVEST : Tube Investments of India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TULSI>TULSI : Tulsi Extrusions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TV18BRDCST>TV18BRDCST : TV18 Broadcast Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TVSELECT>TVSELECT : TVS Electronics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TVSMOTOR>TVSMOTOR : TVS Motor Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TVSSRICHAK>TVSSRICHAK : TVS Srichakra Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TVTODAY>TVTODAY : TV Today Network Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=TWL>TWL : Titagarh Wagons Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UBHOLDINGS>UBHOLDINGS : United Breweries (Holdings) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UBL>UBL : United Breweries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UCALFUEL>UCALFUEL : Ucal Fuel Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UCOBANK>UCOBANK : UCO Bank</option>
+    <option value=https://www.google.com/finance/getchart?q=UFLEX>UFLEX : UFLEX Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UFO>UFO : UFO Moviez India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UGARSUGAR>UGARSUGAR : The Ugar Sugar Works Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UJAAS>UJAAS : Ujaas Energy Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UJJIVAN>UJJIVAN : UJJIVAN FINANCIAL SERVICES LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=ULTRACEMCO>ULTRACEMCO : UltraTech Cement Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UMANGDAIRY>UMANGDAIRY : Umang Dairies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UMESLTD>UMESLTD : Usha Martin Education & Solutions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UNICHEMLAB>UNICHEMLAB : Unichem Laboratories Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UNIENTER>UNIENTER : Uniphos Enterprises Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UNIONBANK>UNIONBANK : Union Bank of India</option>
+    <option value=https://www.google.com/finance/getchart?q=UNIPLY>UNIPLY : Uniply Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UNITECH>UNITECH : Unitech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UNITEDBNK>UNITEDBNK : United Bank of India</option>
+    <option value=https://www.google.com/finance/getchart?q=UNITEDTEA>UNITEDTEA : The United Nilgiri Tea Estates Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UNITY>UNITY : Unity Infraprojects Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UNIVCABLES>UNIVCABLES : Universal Cables Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UPERGANGES>UPERGANGES : Upper Ganges Sugar & Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UPL>UPL : UPL Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=USHAMART>USHAMART : Usha Martin Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=USHERAGRO>USHERAGRO : Usher Agro Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UTTAMSTL>UTTAMSTL : Uttam Galva Steels Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=UTTAMSUGAR>UTTAMSUGAR : Uttam Sugar Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=V2RETAIL>V2RETAIL : V2 Retail Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VADILALIND>VADILALIND : Vadilal Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VAIBHAVGBL>VAIBHAVGBL : Vaibhav Global Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VAKRANGEE>VAKRANGEE : VAKRANGEE LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=VALECHAENG>VALECHAENG : Valecha Engineering Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VALUEIND>VALUEIND : Value Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VARDHACRLC>VARDHACRLC : Vardhman Acrylics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VARDMNPOLY>VARDMNPOLY : Vardhman Polytex Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VASCONEQ>VASCONEQ : Vascon Engineers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VASWANI>VASWANI : Vaswani Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VEDL>VEDL : Vedanta Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VENKEYS>VENKEYS : Venky's (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VENUSREM>VENUSREM : Venus Remedies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VESUVIUS>VESUVIUS : Vesuvius India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VETO>VETO : Veto Switchgears And Cables Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VGUARD>VGUARD : V-Guard Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VHL>VHL : Vardhman Holdings Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VICEROY>VICEROY : Viceroy Hotels Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VIDEOIND>VIDEOIND : Videocon Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VIDHIDYE>VIDHIDYE : Vidhi Dyestuffs Manufacturing Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VIJAYABANK>VIJAYABANK : Vijaya Bank</option>
+    <option value=https://www.google.com/finance/getchart?q=VIJSHAN>VIJSHAN : Vijay Shanthi Builders Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VIKASECO>VIKASECO : Vikas EcoTech Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VIMALOIL>VIMALOIL : Vimal Oil & Foods Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VIMTALABS>VIMTALABS : Vimta Labs Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VINATIORGA>VINATIORGA : Vinati Organics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VINDHYATEL>VINDHYATEL : Vindhya Telelinks Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VINYLINDIA>VINYLINDIA : Vinyl Chemicals (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VIPIND>VIPIND : VIP Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VIPULLTD>VIPULLTD : Vipul Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VISAKAIND>VISAKAIND : Visaka Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VISASTEEL>VISASTEEL : Visa Steel Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VISESHINFO>VISESHINFO : Visesh Infotecnics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VISHNU>VISHNU : Vishnu Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VISUINTL>VISUINTL : Visu International Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VIVIDHA>VIVIDHA : Visagar Polytex Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VIVIMEDLAB>VIVIMEDLAB : Vivimed Labs Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VKSPL>VKSPL : VKS Projects Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VLSFINANCE>VLSFINANCE : VLS Finance Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VMART>VMART : V-Mart Retail Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VOLTAMP>VOLTAMP : Voltamp Transformers Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VOLTAS>VOLTAS : Voltas Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VRLLOG>VRLLOG : VRL Logistics Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VSSL>VSSL : Vardhman Special Steels Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VSTIND>VSTIND : VST Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VSTTILLERS>VSTTILLERS : V.S.T Tillers Tractors Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=VTL>VTL : Vardhman Textiles Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WABAG>WABAG : VA Tech Wabag Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WABCOINDIA>WABCOINDIA : WABCO India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WALCHANNAG>WALCHANNAG : Walchandnagar Industries Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WANBURY>WANBURY : Wanbury Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WEBELSOLAR>WEBELSOLAR : Websol Energy System Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WEIZFOREX>WEIZFOREX : Weizmann Forex Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WEIZMANIND>WEIZMANIND : Weizmann Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WELCORP>WELCORP : Welspun Corp Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WELENT>WELENT : Welspun Enterprises Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WELINV>WELINV : Welspun Investments and Commercials Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WELSPUNIND>WELSPUNIND : Welspun India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WENDT>WENDT : Wendt (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WHEELS>WHEELS : Wheels India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WHIRLPOOL>WHIRLPOOL : Whirlpool of India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WILLAMAGOR>WILLAMAGOR : Williamson Magor & Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WINDMACHIN>WINDMACHIN : Windsor Machines Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WINSOME>WINSOME : Winsome Yarns Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WIPRO>WIPRO : Wipro Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WOCKPHARMA>WOCKPHARMA : Wockhardt Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WONDERLA>WONDERLA : Wonderla Holidays Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WSI>WSI : W S Industries (I) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=WSTCSTPAPR>WSTCSTPAPR : West Coast Paper Mills Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=XCHANGING>XCHANGING : Xchanging Solutions Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=XLENERGY>XLENERGY : XL Energy Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=XPROINDIA>XPROINDIA : Xpro India Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=YESBANK>YESBANK : Yes Bank Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ZANDUREALT>ZANDUREALT : Zandu Realty Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ZEEL>ZEEL : Zee Entertainment Enterprises Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ZEELEARN>ZEELEARN : Zee Learn Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ZEEMEDIA>ZEEMEDIA : Zee Media Corporation Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ZENITHBIR>ZENITHBIR : Zenith Birla (India) Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ZENITHEXPO>ZENITHEXPO : Zenith Exports Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ZENSARTECH>ZENSARTECH : Zensar Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ZENTEC>ZENTEC : Zen Technologies Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ZICOM>ZICOM : Zicom Electronic Security Systems Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ZODIACLOTH>ZODIACLOTH : Zodiac Clothing Company Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ZODJRDMKJ>ZODJRDMKJ : Zodiac JRD- MKJ Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ZUARI>ZUARI : Zuari Agro Chemicals Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ZUARIGLOB>ZUARIGLOB : ZUARI GLOBAL LIMITED</option>
+    <option value=https://www.google.com/finance/getchart?q=ZYDUSWELL>ZYDUSWELL : Zydus Wellness Limited</option>
+    <option value=https://www.google.com/finance/getchart?q=ZYLOG>ZYLOG : Zylog Systems Limited</option>
+</select>
+    <hr>
+    <div>
+        <img id="image" src="" class="img-responsive" target="_blank"/>
+    </div>
+</div>
+
+
+<script>
+    function setStock() {
+    var img = document.getElementById("image");
+    img.src = this.value;
+    return false;
+}
+    document.getElementById("StockList").onclick = setStock;
+</script>
+    </div>
+
+
+</div>
+{% endblock %}

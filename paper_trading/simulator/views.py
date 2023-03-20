@@ -23,7 +23,8 @@ from django.contrib import messages, auth
 from django.contrib.auth import authenticate,login,logout
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-
+from stock.utils import varsha, get_local
+from stock.utils import top
 @login_required(login_url = 'login')
 def dashboard(request):
     print(request)
@@ -38,7 +39,7 @@ def dashboard(request):
         price = get_quote_table(str(stock.symbol))['Open'] * int(stock.no_of_shares)
         total_cash += price
     userdeets.profit = round((decimal.Decimal(total_cash) + userdeets.cash - decimal.Decimal(1000000)) / 10000,2)
-    userdeets.stock_value = decimal.Decimal(total_cash)
+    userdeets.stock_value = round(decimal.Decimal(total_cash),2)
     userdeets.save()
     context = {
         'stocks': stocks,
@@ -244,3 +245,59 @@ def track(request,username):
     }
     print(context)
     return render(request, 'history.html', context)
+
+def learn(request):
+    return render(request, 'learn.html')
+
+
+def appl_ts(request):
+    return render(request, 'timestamp/AAPL_index.html')
+def goog_ts(request):
+    return render(request, 'timestamp/GOOG_index.html')
+
+def reports(request):
+    return render(request, 'stock/reports.html', context=None)
+
+
+def topg(request):
+    gainers = top.top_gainers()
+    losers = top.top_losers()
+    con = {
+        'gainers': gainers,
+        'losers': losers,
+    }
+    return render(request, 'topg.html', con)
+
+
+def current(request):
+    return render(request, 'stock/current.html', context=None)
+
+
+def today(request):
+    return render(request, 'stock/today.html', context=None)
+
+
+def experts(request):
+    return render(request, 'stock/experts.html', context=None)
+
+
+def company_reviews(request):
+    return render(request, 'stock/company_reviews.html', context=None)
+
+
+def todays_comments(request):
+    return render(request, 'stock/todays_comments.html', context=None)
+
+
+def graph(request):
+    return render(request, 'stock/graph.html', context=None)
+
+
+def try_python(request):
+    result = varsha.x()
+    return render(request, 'stock/trial.html', {'result':result})
+
+def index(request):
+    #scraper.scr_call()
+    print("Reached Views.index")
+    return render(request, 'stock/index.html', context=None)

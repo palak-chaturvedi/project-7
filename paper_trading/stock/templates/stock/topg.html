@@ -1,0 +1,89 @@
+{% extends 'stock/base_dashboard.html' %}
+{% block title %}Top{% endblock %}
+
+{% block content %}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Top Gainers & Top Losers</h1>
+
+<h2 class="sub-header" style="color: green">Top Gainers</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Open Price</th>
+                    <th>Low Price</th>
+                    <th>High Price</th>
+                    <th>Closing Price</th>
+                    <th>Net Price</th>
+                    <th>Last Traded Price</th>
+                    <th>Traded Quantity</th>
+                    <th>Turnover in lakhs</th>
+                    <th>Dividend per Share</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for row in gainers %}
+                    <tr>
+                        <td><a href=https://www.google.com/finance/getchart?q={{ row.symbol }} target="_blank">{{ row.symbol }}</a></td>
+                        <td>{{ row.openPrice }}</td>
+                        <td>{{ row.lowPrice }}</td>
+                        <td>{{ row.highPrice }}</td>
+                        <td>{{ row.previousPrice }}</td>
+                        <td>{{ row.netPrice }}</td>
+                        <td>{{ row.ltp }}</td>
+                        <td>{{ row.tradedQuantity }}</td>
+                        <td>{{ row.turnoverInLakhs }}</td>
+                        <td>{{ row.lastCorpAnnouncement }}</td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+<h2 class="sub-header" style="color: red">Top Losers</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Open Price</th>
+                    <th>Low Price</th>
+                    <th>High Price</th>
+                    <th>Closing Price</th>
+                    <th>Net Price</th>
+                    <th>Last Traded Price</th>
+                    <th>Traded Quantity</th>
+                    <th>Turnover in lakhs</th>
+                    <th>Dividend per Share</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for row in losers %}
+                    <tr>
+                        <td><a href=https://www.google.com/finance/getchart?q={{ row.symbol }} target="_blank">{{ row.symbol }}</a></td>
+                        <td>{{ row.openPrice }}</td>
+                        <td>{{ row.lowPrice }}</td>
+                        <td>{{ row.highPrice }}</td>
+                        <td>{{ row.previousPrice }}</td>
+                        <td>{{ row.netPrice }}</td>
+                        <td>{{ row.ltp }}</td>
+                        <td>{{ row.tradedQuantity }}</td>
+                        <td>{{ row.turnoverInLakhs }}</td>
+                        <td>{{ row.lastCorpAnnouncement }}</td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+</div>
+{% endblock %}
