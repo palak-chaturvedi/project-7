@@ -1,0 +1,40 @@
+expert_id	comments	company_code	sentiment	target
+906	Buy NMDC, advises Sudarshan Sukhani	NMDC	buy	-1
+906	Prefer Dr Reddy's, Sun Pharma, SBI, HDFC Bank, HDFC	HDFCBANK	buy	-1
+906	Buy HDFC, Colgate, State Bank of India	HDFCBANK	buy	-1
+137	Buy SREI Infra, Inox Leisure, CONCOR	INOXLEISUR	buy	-1
+137	Buy IndusInd Bank, JSW Energy, Bharat Forge	JSWENERGY	buy	-1
+137	Buy Bharat Financial, Hero Moto, M&M; Financial	M&M	buy	-1
+137	Here are Ashwani Gujral & JK Jain's top trading ideas	473S&P500	hold	-1
+137	Buy IndusInd Bank, M&M; Financial, ITC; sell HCL Tech	M&M	sell	-1
+906	Buy HDFC, Hindalco Industries, Marico	MARICO	buy	-1
+137	Buy DLF, Tata Motors, Dabur, Aurobindo Pharma	TATAMOTORS	buy	-1
+906	Sell Just Dial on every rally, buy DLF	JUSTDIAL	sell	-1
+137	Buy Tata Motors, Sobha may test Rs 350-360	TATAMOTORS	buy	350.0
+906	Buy ITC, Dr Reddy's Laboratories	ITC	buy	-1
+137	Buy HUL, M&M;, Orient Cement, GMDC, Future Lifestyle	ORIENTCEM	buy	-1
+906	Market experts give trading picks to trade for today	FMNL	hold	-1
+906	Resistance for Nifty at 8175-8250	NIFTY	sell	8175.0
+666	Hold BHEL, may test Rs 200	BHEL	buy	200.0
+666	Stay invested in OBC, may test Rs 130-135	SEINV	hold	130.0
+137	Buy India Cements, Ajanta Pharma, ITC	ITC	buy	-1
+137	Buy Dredging Corp, Godrej Properties, Gruh Finance	GRUH	buy	-1
+137	Buy Lupin, Hindustan Unilever, Bata India	LUPIN	buy	-1
+137	Buy Engineers India, AB Nuvo, Reliance Capital	RELIANCE	buy	-1
+137	Buy Aurobindo Pharma, UPL, Axis Bank	UPL	buy	-1
+666	Ashok Leyland may test Rs 102, Sun Pharma Rs 805	ASHOKLEY	sell	805.0
+137	Stay with Balrampur Chini, EID Parry	EIDPARRY	buy	-1
+137	Buy Dena Bank, SREI Infra, Biocon, Sun Pharma Adv	DENABANK	buy	-1
+666	Nifty may climb to 8175-8200	NIFTY	sell	8175.0
+748	Buy KEC Intl; target of Rs 150	KEC	buy	150.0
+1	Buy Lupin; target of Rs 1693	LUPIN	buy	1693.0
+748	Buy Ceat; target of Rs 1120	CEATLTD	buy	1120.0
+748	Sell L&T; target of Rs 1000	TTL	sell	1000.0
+301	Buy Banco; target of Rs 171	BANCOINDIA	buy	171.0
+748	Hold Dr. Reddys; target of Rs 3280	STERLINHOL	hold	3280.0
+659	Accumulate HCL Tech; target of Rs 890	NIITTECH	buy	890.0
+561	Buy Byke Hospitality; target of Rs 215	BYKE	buy	215.0
+1	Expect Nifty to open gap up at 8166	NIFTY	hold	8166.0
+526	See Nifty open on positive note	NIFTY	hold	-1
+1	Expect Nifty to open gap down at 8070	NIFTY	hold	8070.0
+526	See Nifty open on negative note	NIFTY	hold	-1

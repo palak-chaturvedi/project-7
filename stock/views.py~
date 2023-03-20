@@ -1,0 +1,26 @@
+from django.http import HttpResponse
+from django.shortcuts import render
+
+from stock.utils import varsha, get_local
+
+
+# Create your views here.
+
+
+def index(request):
+    return render(request, 'stock/index.html', context=None)
+
+
+def scrape(request):
+    return render(request, 'stock/scrape.html', context=None)
+
+
+def stock_quote(request):
+    return render(request, 'stock/stock_quote.html',{'company_list':get_local.get_companies()})
+
+
+def try_python(request):
+    result = varsha.x()
+    return render(request, 'stock/trial.html', {'result':result})
+
+
