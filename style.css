@@ -164,6 +164,10 @@ legend {text-align:center}
 	background: var(--light-orange);
 	color: var(--orange);
 }
+#content main .box-info li:nth-child(4) .bx {
+	background: var(--light-purple);
+	color: var(--purple);
+}
 
 .dropdown {
 	display: inline-block;
