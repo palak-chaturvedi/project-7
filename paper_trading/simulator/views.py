@@ -254,6 +254,16 @@ def appl_ts(request):
     return render(request, 'timestamp/AAPL_index.html')
 def goog_ts(request):
     return render(request, 'timestamp/GOOG_index.html')
+def ibm_ts(request):
+    return render(request, 'timestamp/IBM_index.html')
+def amzn_ts(request):
+    return render(request, 'timestamp/AMZN_index.html')
+def jnj_ts(request):
+    return render(request, 'timestamp/JNJ_index.html')
+def msft_ts(request):
+    return render(request, 'timestamp/MSFT_index.html')
+def wmt_ts(request):
+    return render(request, 'timestamp/WMT_index.html')
 
 def reports(request):
     return render(request, 'stock/reports.html', context=None)
