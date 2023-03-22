@@ -8,8 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="icon" type="image/x-icon" href="https://thumbs.dreamstime.com/b/law-firm-lawyer-law-office-symbol-isolated-dark-background-simple-vector-logo-law-firm-lawyer-law-office-symbol-isolated-195469545.jpg">
-    <title>LawyerStack</title>
+    <title>Stockify</title>
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <style>
         .box2 {
@@ -88,9 +87,9 @@
                         enctype="multipart/form-data" method='post'>{% csrf_token %}
 
                         <p><b>Title</b></p><br><input type="input" name="title" autocomplete="off" required
-                            style="width:90%;"><br><br>
-                        <p><b>Description</b></p><br><textarea name="disc" cols="30" rows="10" style="width:90%;font-family: font;padding: 0.3vw 1vw;border: none;
-                        border-radius: 2rem;"></textarea><br><br>
+                            style="width:90%;">
+                        <p><b>Description</b></p><textarea name="disc" cols="30" rows="10" style="width:90%;font-family: font;padding: 0.3vw 1vw;border: none;
+                        border-radius: 2rem;"></textarea>
                         <p><b>Article Image</b></p><br><input type="file" name="articleimage"><br><br>
                 </div>
                 <div class="btttn">
