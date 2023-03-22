@@ -41,7 +41,11 @@ INSTALLED_APPS = [
     'homepage',
     'accounts',
     'authenticate',
-    'stock'
+    'stock',
+    'channels',
+    'chat',
+    'prediction',
+    'blog'
 ]
 
 MIDDLEWARE = [
@@ -72,7 +76,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'paper_trading.wsgi.application'
+# WSGI_APPLICATION = 'paper_trading.wsgi.application'
+ASGI_APPLICATION = "paper_trading.asgi.application"
 
 
 # Database
@@ -129,3 +134,12 @@ STATICFILES_DIRS = (
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
+
+LOGIN_REDIRECT_URL = 'Dashboard'
+LOGOUT_REDIRECT_URL = 'home'

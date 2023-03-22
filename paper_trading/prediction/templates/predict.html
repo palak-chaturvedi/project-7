@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h3>Stock Predictor</h3>
+
+<form  action="{% url 'predict' %}" onsubmit="return validate()" enctype="multipart/form-data"
+                method='post'>{% csrf_token %}
+  <div class="form-group">
+    <label for="symbol">Stock Name</label>
+    <select class="form-control" id="symbol" name="symbol" required>
+      {% for  i in result %}
+      <option>{{ i }}</option>
+      {% endfor %}
+
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% if print %}
+<div>
+  The price of stock is {{ prev_close }} and volume {{ prev_vol }}.
+  According to random forest classifier run on past years, we have found the stock will
+  {% if total_val %} <bold> Rise</bold>
+  {% else %} <bold> Fall</bold>
+
+
+{% endif %}
+  <h5>According to mathematical analysis we have found that you should <bold>{{ strat }}</bold> the stock.</h5>
+{% endif %}
+</div>
+
+
+</body>
+</html>

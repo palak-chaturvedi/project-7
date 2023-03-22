@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Stock Calculator</h3>
+
+<form  action="{% url 'calculate' %}" onsubmit="return validate()" enctype="multipart/form-data"
+                method='post'>{% csrf_token %}
+  <div class="form-group">
+    <label for="symbol">Stock Name</label>
+    <select class="form-control" id="symbol" name="symbol" required>
+      {% for  i in result %}
+      <option>{{ i }}</option>
+      {% endfor %}
+
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="amount">Select Investment Amount</label>
+    <input class="form-control" id="amount" name="amount" placeholder="Amount in Rs">
+  </div>
+  <div class="form-check">
+      <label for="time">Select Time</label>
+    <select class="form-control" id="time" name="time" required>
+      <option> 1 month </option>
+      <option> 2 month </option>
+      <option> 5 month </option>
+      <option> 10 month </option>
+      <option> 1 years </option>
+      <option> 2 years </option>
+      <option> 5 years </option>
+      <option> 10 years</option>
+
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% if print %}
+<div>
+  The closing value of stock at that time was {{ prev_close }} and volume {{ prev_vol }}.
+  The total value of your stock would have been Rs{{total_val}} by now.
+</div>
+{% endif %}
+
+</body>
+</html>

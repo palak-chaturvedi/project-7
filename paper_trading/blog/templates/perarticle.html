@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="https://thumbs.dreamstime.com/b/law-firm-lawyer-law-office-symbol-isolated-dark-background-simple-vector-logo-law-firm-lawyer-law-office-symbol-isolated-195469545.jpg">
+    <title>LawyerStack</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <style>
+.Mainaarticles {
+  display: flex;
+  flex-wrap: wrap;
+  width: 93vw;
+  margin: 10vh auto;
+}
+
+.aarticle {
+  font-family: font;
+  width: 28.5vw;
+  margin: 3vw auto;
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid red; */
+  border-radius: 2vw;
+  box-shadow: 0px 0px 22px -4px rgb(122 119 119);
+  /* background-color: rgba(198, 189, 179, 0.193); */
+  padding: 2vw;
+}
+
+.ArtHeading {
+  margin-top: 1vw;
+  font-size: 2vw;
+  font-weight: bold;
+}
+
+.aarticle img {
+  height: 15vw;
+  /* width: 16vw; */
+  border-radius: 2vw;
+  box-shadow: 0px 0px 22px -4px rgb(122 119 119);
+}
+
+.content {
+  line-height: 1.6vw;
+  font-size: 1.1vw;
+  overflow: hidden;
+  position: relative;
+}
+
+.tohide {
+  height: calc(3 * 1.6vw);
+}
+
+.tohide::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 1.6vw;
+  width: 100%;
+  /* background: linear-gradient(90deg, transparent, white); */
+}
+
+.aarticle button {
+  /* padding: 0.6vw 1.9vw; */
+  background: linear-gradient(45deg, grey 20%, rgba(0, 0, 0, 0.823) 80%);
+  box-shadow: 0px 0px 22px 0px rgb(122 119 119);
+  height: 3.1vw;
+  width: 10vw;
+  font-size: 1vw;
+  border-radius: 1vw !important;
+  background-color: rgba(0, 0, 0, 0.533);
+  color: aliceblue;
+  font-family: font;
+}
+
+.modal-title {
+  font-size: 3vw;
+}
+
+.bySome {
+  margin-top: -1vw;
+  padding: 1vw;
+  font-size: 1.1vw;
+  display: flex;
+}
+
+.divvision {
+  display: flex;
+  margin: 0vw 2vw;
+}
+
+.divvision p {
+  padding: 1vw 1.4vw;
+  font-size: 1.03vw;
+  margin-bottom: 0;
+}
+
+.npara {
+  font-size: 1.03vw;
+  padding: 1vw 1.4vw;
+  margin: -1vw 2vw 0vw 2vw;
+}
+
+.divvision img {
+  margin: auto;
+}
+
+.btn-close {
+  display: none;
+}
+
+@media screen and (max-width: 850px) {
+  .aarticle {
+    width: 40vw;
+  }
+
+  .mar {
+    font-size: 3vw !important;
+  }
+
+  .aarticle img {
+    height: 23vw;
+  }
+
+  .content {
+    line-height: 2.3vw;
+    font-size: 2vw;
+  }
+
+  .tohide {
+    height: calc(3 * 2.3vw);
+  }
+
+  .tohide::after {
+    height: 2.3vw;
+  }
+
+  .aarticle button {
+    height: 5vw;
+    width: 16vw;
+    font-size: 2.2vw;
+  }
+
+  .bySome {
+    font-size: 1.8vw;
+  }
+
+  .divvision {
+    flex-direction: column;
+  }
+
+  .divvision p {
+    font-size: 1.5vw;
+  }
+
+  .npara {
+    font-size: 1.5vw;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .divvision p {
+    font-size: 2.7vw;
+  }
+
+  .npara {
+    font-size: 2.7vw;
+  }
+
+  .divvision img {
+    margin-top: 2vw;
+  }
+
+  .bySome {
+    font-size: 2.3vw;
+  }
+
+  .modal-title {
+    font-size: 3.4vw;
+  }
+
+  #exampleModalLabel {
+    font-size: 4vw !important;
+  }
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="Mainaarticles">
+        <div class="aarticle" style="width:70%">
+            <img src={{Article.ArticleImage.url}} alt="" srcset="">
+            <div>
+                <h2 class="ArtHeading mar">{{Article.Title}}</h2>
+
+                <div class="onearticle">
+                    <p class="content">{{Article.Description}}
+                    </p>
+                    <div class="bySome">--{{Article.Author}}</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+
+</html>

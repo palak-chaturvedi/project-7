@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="icon" type="image/x-icon" href="https://thumbs.dreamstime.com/b/law-firm-lawyer-law-office-symbol-isolated-dark-background-simple-vector-logo-law-firm-lawyer-law-office-symbol-isolated-195469545.jpg">
+    <title>LawyerStack</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <style>
+        .box2 {
+  background: rgba(10, 24, 26, 0.116);
+  display: flex;
+  width: 70vw;
+  height: 80vh;
+  /* height: 30rem; */
+  margin: 15vh auto;
+  border-radius: 1.3rem;
+  box-shadow: 0px 0px 22px 0px rgb(122 119 119);
+}
+
+.box2 img {
+  /* height: 37vw; */
+  width: 40vw;
+  filter: saturate(1.6);
+  border-radius: 1.3rem;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.login {
+  width: 33vw;
+  justify-content: center;
+  text-align: center;
+  overflow-y: scroll;
+  height: 65vh;
+}
+
+.headlogin {
+  font-size: 2vw;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.link {
+  text-decoration: none;
+  margin: 1px auto;
+}
+
+.link:hover {
+  transform: none !important;
+}
+
+.btttn,
+.bttn {
+  margin-top: 9vw;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.bttn {
+  height: 42.5vh;
+  padding: 1vw;
+  margin-top: 1vw !important;
+  margin-bottom: -1.7vw !important;
+  /* scrollbar-color: red yellow; */
+}
+    </style>
+</head>
+
+
+<body>
+
+    <div class="boss">
+        <div class="box2">
+            <img src="https://c1.wallpaperflare.com/preview/1021/862/549/newspaper-le-monde-background-old.jpg" alt=""
+                srcset="" style="width:40%;">
+            <div class="layer"></div>
+            <div class="login" style="width:60%;">
+                <p class="headlogin"><i>Add Article</i></p>
+                <div class="btttn bttn">
+                    <form action="{% url 'AddArticle'%}" onsubmit="return validate()"
+                        enctype="multipart/form-data" method='post'>{% csrf_token %}
+
+                        <p><b>Title</b></p><br><input type="input" name="title" autocomplete="off" required
+                            style="width:90%;"><br><br>
+                        <p><b>Description</b></p><br><textarea name="disc" cols="30" rows="10" style="width:90%;font-family: font;padding: 0.3vw 1vw;border: none;
+                        border-radius: 2rem;"></textarea><br><br>
+                        <p><b>Article Image</b></p><br><input type="file" name="articleimage"><br><br>
+                </div>
+                <div class="btttn">
+                    <button type="submit" id="Register">Post</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

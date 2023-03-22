@@ -1317,7 +1317,7 @@
 				<li>
 					<i class='bx bxs-dollar-circle' ></i>
 					<span class="text">
-						<h3>Other Users</h3>
+						<h3>LeaderBoard</h3>
 					</span>
 				</li>
 					</a>
@@ -1343,7 +1343,7 @@
 							<tr>
 								<th>Company</th>
 								<th>Money invested</th>
-								<th>Price</th>
+								<th>Value</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -1353,8 +1353,8 @@
 									<i class='bx bx-candles'></i>
 									<p>{{ stock.symbol }}</p>
 								</td>
-								<td>$ {{ stock.no_of_shares }}</td>
-								<td><span class="status completed">$ 1500</span></td>
+								<td> {{ stock.no_of_shares }}</td>
+								<td><span>Rs {{ stock.value }}</span></td>
 							</tr>
 							<tr>
 								      {% endfor %}
@@ -1384,7 +1384,49 @@
 					</ul>
 				</div>
 			</div>
+
+			<ul class="box-info">
+								<a href="{% url 'AddArticle' %}">
+
+				<li>
+					<i class='bx bxs-calendar-check' ></i>
+					<span class="text">
+						<h3> Add Articles </h3>
+					</span>
+				</li>
+								</a>
+				<a href="{% url 'showAllArticle' %}">
+
+				<li>
+					<i class='bx bxs-group' ></i>
+					<span class="text">
+						<h3>Show All Articles</h3>
+					</span>
+				</li>
+				</a>
+				<a href="{% url 'calculate' %}">
+
+				<li>
+					<i class='bx bxs-dollar-circle' ></i>
+					<span class="text">
+						<h3>Stock Investment Calculator</h3>
+					</span>
+				</li>
+					</a>
+				<a href="{% url 'predict' %}">
+
+				<li>
+					<i class='bx bxs-dollar-circle' ></i>
+					<span class="text">
+						<h3>Get Prediction of A Stock</h3>
+					</span>
+				</li>
+					</a>
+
+			</ul>
+
 		</main>
+
 		<!-- MAIN -->
 	</section>
 	<!-- CONTENT -->

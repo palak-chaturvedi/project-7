@@ -4,6 +4,7 @@ import time
 from threading import Thread
 import decimal
 
+from _decimal import Decimal
 from django.shortcuts import render, redirect
 from .models import User, Stock, Trade
 from django.shortcuts import render, redirect
@@ -38,8 +39,11 @@ def dashboard(request):
     for stock in stocks:
         price = get_quote_table(str(stock.symbol))['Open'] * int(stock.no_of_shares)
         total_cash += price
+        stock.value = round(decimal.Decimal(price),2)
+        stock.save()
     userdeets.profit = round((decimal.Decimal(total_cash) + userdeets.cash - decimal.Decimal(1000000)) / 10000,2)
     userdeets.stock_value = round(decimal.Decimal(total_cash),2)
+
     userdeets.save()
     context = {
         'stocks': stocks,
