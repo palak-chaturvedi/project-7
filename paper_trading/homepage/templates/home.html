@@ -1239,27 +1239,27 @@ transition: var(--transition-1);
         <ul class="navbar-list">
 
           <li class="navbar-item">
-            <a href="#" class="navbar-link active" data-nav-link>Homepage</a>
+            <a href="{% url 'home' %}" class="navbar-link active" data-nav-link>Homepage</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#" class="navbar-link" data-nav-link>Portfolio</a>
+            <a href="{% url 'Dashboard' %}" class="navbar-link" data-nav-link>Portfolio</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#" class="navbar-link" data-nav-link>Trade</a>
+            <a href="{% url 'showAllArticle' %}" class="navbar-link" data-nav-link>Articles</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#" class="navbar-link" data-nav-link>Prediction Model</a>
+            <a href="{% url 'topg' %}" class="navbar-link" data-nav-link>Top Stocks</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#" class="navbar-link" data-nav-link>Learn</a>
+            <a href="{% url 'learn' %}" class="navbar-link" data-nav-link>Learn</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#" class="navbar-link" data-nav-link style="color: brown;">LIVE 🔴</a>
+            <a href="{% url 'Stocks' %}" class="navbar-link" data-nav-link style="color: brown;">LIVE 🔴</a>
           </li>
 
         </ul>
@@ -1283,7 +1283,7 @@ transition: var(--transition-1);
   <main>
     <article>
 
-      <!-- 
+      <!--
         - #HERO
       -->
 
@@ -1298,12 +1298,12 @@ transition: var(--transition-1);
               Stockify is an easy to learn, safest, and fastest way to buy & sell stocks virtually!
             </p>
 
-            <a href="#" class="btn btn-primary">Get started now</a>
+            <a href="{% url 'register' %}" class="btn btn-primary">Get started now</a>
 
           </div>
 
           <figure class="hero-banner">
-            
+
             <i class="fa fa-business-time" style="font-size: 300px; background-image: -moz-linear-gradient(top,#3874FF 0%,#1F305E 100%);
             background-image: -webkit-linear-gradient(top,#3874FF 0%,#1F305E 100%);
             background-image: -o-linear-gradient(top,#3874FF 0%,#1F305E 100%);
@@ -1322,7 +1322,7 @@ transition: var(--transition-1);
 
 
 
-      <!-- 
+      <!--
         - #TREND
       -->
 
@@ -1345,7 +1345,7 @@ transition: var(--transition-1);
                 <div class="trend-card">
 
                   <div class="card-title-wrapper">
-                   
+
 
                     <a href="#" class="card-title">
                       Bitcoin <span class="span">BTC/USD</span>
@@ -1367,7 +1367,7 @@ transition: var(--transition-1);
                 <div class="trend-card active">
 
                   <div class="card-title-wrapper">
-                    
+
 
                     <a href="#" class="card-title">
                       Ethereum <span class="span">ETH/USD</span>
@@ -1389,7 +1389,7 @@ transition: var(--transition-1);
                 <div class="trend-card">
 
                   <div class="card-title-wrapper">
-                    
+
 
                     <a href="#" class="card-title">
                       Tether <span class="span">USDT/USD</span>
@@ -1411,7 +1411,7 @@ transition: var(--transition-1);
                 <div class="trend-card">
 
                   <div class="card-title-wrapper">
-                   
+
 
                     <a href="#" class="card-title">
                       BNB <span class="span">BNB/USD</span>
@@ -1440,7 +1440,7 @@ transition: var(--transition-1);
 
 
 
-      <!-- 
+      <!--
         - #MARKET
       -->
 
@@ -1504,7 +1504,7 @@ transition: var(--transition-1);
 
                   <td class="table-data">
                     <div class="wrapper">
-                  
+
 
                       <h3>
                         <a href="#" class="coin-name">ADANIENT</a>
@@ -1549,7 +1549,7 @@ transition: var(--transition-1);
 
                   <td class="table-data">
                     <div class="wrapper">
-                  
+
 
                       <h3>
                         <a href="#" class="coin-name">ADANIPORTS</a>
@@ -1638,7 +1638,7 @@ transition: var(--transition-1);
 
                   <td class="table-data">
                     <div class="wrapper">
-                      
+
 
                       <h3>
                         <a href="#" class="coin-name">TATASTEEL</a>
@@ -1683,7 +1683,7 @@ transition: var(--transition-1);
 
                   <td class="table-data">
                     <div class="wrapper">
-                    
+
 
                       <h3>
                         <a href="#" class="coin-name">DRREDDY</a>
@@ -1728,7 +1728,7 @@ transition: var(--transition-1);
 
 
 
-      <!-- 
+      <!--
         - #INSTRUCTION
       -->
 
@@ -1850,7 +1850,7 @@ transition: var(--transition-1);
 
 
 
-      <!-- 
+      <!--
         - #ABOUT
       -->
 
@@ -1871,7 +1871,7 @@ transition: var(--transition-1);
 
           <div class="about-content">
 
-            <h2 class="h2 section-title"> 
+            <h2 class="h2 section-title">
               What do we PROVIDE?</h2>
 
             <p class="section-text">
@@ -1919,7 +1919,7 @@ transition: var(--transition-1);
 
 
 
-      <!-- 
+      <!--
         - #APP
       -->
 
@@ -1933,7 +1933,7 @@ transition: var(--transition-1);
             <p class="section-text">
               With Stockify, you can be sure your trading skills are matched
             </p>
-           
+
 
           <div class="app-banner">
 
@@ -1949,7 +1949,7 @@ transition: var(--transition-1);
 
 
 
-  <!-- 
+  <!--
     - #FOOTER
   -->
 
@@ -1989,15 +1989,15 @@ transition: var(--transition-1);
           </li>
 
           <li>
-            <a href="#" class="footer-link">Buy Stocks</a>
+            <a href="{% url 'Stocks' %}" class="footer-link">Buy Stocks</a>
           </li>
 
           <li>
-            <a href="#" class="footer-link">Markets</a>
+            <a href="{% url 'Stocks' %}" class="footer-link">Markets</a>
           </li>
 
           <li>
-            <a href="#" class="footer-link">Learn trading</a>
+            <a href="{% url 'learn' %}" class="footer-link">Learn trading</a>
           </li>
 
           <li>
@@ -2005,11 +2005,11 @@ transition: var(--transition-1);
           </li>
 
           <li>
-            <a href="#" class="footer-link">Live stock updates</a>
+            <a href="{% url 'Stocks' %}" class="footer-link">Live stock updates</a>
           </li>
 
           <li>
-            <a href="#" class="footer-link">Simulation</a>
+            <a href="{% url 'appl_ts' %}" class="footer-link">Simulation</a>
           </li>
 
         </ul>
