@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -15,14 +16,16 @@
     <title>Login</title>
 
     <style>
+       .button
+{
+    font-size: 13px;
+    color:green;
+}
       body{
-        background-color:rgb(194, 240, 255);
-  background-image:
-radial-gradient(at 80% 0%, rgb(31, 158, 255) 0px, transparent 50%),
-radial-gradient(at 0% 50%, rgb(219, 243, 255) 0px, transparent 50%),
-radial-gradient(at 80% 50%, rgb(133, 147, 255) 0px, transparent 50%),
-radial-gradient(at 0% 100%, rgb(92, 98, 191) 0px, transparent 50%),
-radial-gradient(at 0% 0%, rgb(133, 182, 255) 0px, transparent 50%);
+       background-color: var(--eerie-black-2);
+	color: var(--cadet-blue-crayola);
+	font-size: 1.6rem;
+	line-height: 1.4;
 height: 100vh;
   width: 100vw;
       }
@@ -38,7 +41,7 @@ height: 100vh;
     <ul class="navbar-nav ml-auto">
 
         <li class="nav-item active">
-        <a class="nav-link" href="{% url 'register' %}" style="background-color: #343A40; border: 3px solid black; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px; border-radius: 1rem; color: white; font-size: 15px;">Register</a>
+        <a class="nav-link" href="{% url 'register' %}" style="background-color: blue; border: 3px solid black; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px; border-radius: 1rem; color: black; font-size: 15px;">Register</a>
       </li>
 
     </ul>
@@ -72,7 +75,9 @@ height: 100vh;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);">
-	  <button type="submit" class="btn btn-secondary" style="background-color: #343A40; border: 3px solid black; padding-left: 25px; padding-right: 25px; padding-top: 10px; padding-bottom: 10px; border-radius: 1rem; color: white; font-size: 18px;">Login</button>
+	  <div style="padding-top: 40px;" align="center">
+			<button type="submit" class="btn btn-primary" style="color: black; background-color: blue">Login</button>
+		  </div>
     </div>
 	</form>
 </div>

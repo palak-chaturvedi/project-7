@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,22 +13,25 @@
     <link rel="stylesheet" href=
 "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Login</title>
+    <title>Register</title>
 
     <style>
+       .button
+{
+    font-size: 13px;
+    color:green;
+}
       body{
-        background-color:rgb(194, 240, 255);
-  background-image:
-radial-gradient(at 80% 0%, rgb(31, 158, 255) 0px, transparent 50%),
-radial-gradient(at 0% 50%, rgb(219, 243, 255) 0px, transparent 50%),
-radial-gradient(at 80% 50%, rgb(133, 147, 255) 0px, transparent 50%),
-radial-gradient(at 0% 100%, rgb(92, 98, 191) 0px, transparent 50%),
-radial-gradient(at 0% 0%, rgb(133, 182, 255) 0px, transparent 50%);
+       background-color: var(--eerie-black-2);
+	color: var(--cadet-blue-crayola);
+	font-size: 1.6rem;
+	line-height: 1.4;
 height: 100vh;
   width: 100vw;
       }
     </style>
   </head>
+  <body style="background-color: hsl(223, 10%, 82%);">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="{% url 'home'  %}"><i class="fa-sharp fa-solid fa-arrow-trend-up"></i> Stockify</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +41,7 @@ height: 100vh;
     <ul class="navbar-nav ml-auto">
 
         <li class="nav-item active">
-        <a class="nav-link" href="{% url 'login' %}" style="background-color: #343A40; border: 3px solid black; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px; border-radius: 1rem; color: white; font-size: 15px;">Login</a>
+        <a class="nav-link" href="{% url 'login' %}" style="background-color: blue; border: 3px solid black; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px; border-radius: 1rem; color: black; font-size: 15px;">Login</a>
       </li>
 
     </ul>
@@ -45,14 +49,13 @@ height: 100vh;
   </div>
 		  </nav>
 {% block content %}
-
-<div class="container" style="background-color: rgba(255,255,255,0.4); box-shadow: 0px 0 31px 0px rgb(0 0 0 / 10%); margin-top: 20px; padding: 10px; border-radius: 50px;">
-
-<h2 class ="text-center"> Register </h2>
+<br>
+<br>
+<div class="container" style="background-color: rgba(255,255,255,0.4); box-shadow: 0px 0 31px 0px rgb(0 0 0 / 10%); padding: 30px; padding-bottom: 100px; border-radius: 50px;">
+<h2 class ="text-center"> Register</h2><br>
 
 <div class = "col-md-6 offset-md-3"> 
-
-<form method="POST" action="{% url 'register' %}">
+	<form method="POST" action="{% url 'register' %}">
 		{% csrf_token %}
 
 		{% if form.errors %}
@@ -79,9 +82,13 @@ height: 100vh;
 
 		{{ form.as_p }}
 
-
-		<input type="submit" value="Register" class=" btn btn-secondary" style="background-color: #343A40; border: 3px solid black; padding-left: 25px; padding-right: 25px; padding-top: 10px; padding-bottom: 10px; border-radius: 1rem; color: white; font-size: 18px;">
+<br>
+		<button type="submit" class="btn btn-primary" style="color: black; background-color: blue" align="center">Register</button>
 	</form>
+  
 </div>
+
 </div>
+
 {% endblock %}
+</body>

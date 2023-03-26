@@ -1228,7 +1228,7 @@
 			  </li>
 
 			  <li class="navbar-item">
-				<a href="{% url 'topg' %}" class="navbar-link" data-nav-link>Prediction Model</a>
+				<a href="{% url 'topg' %}" class="navbar-link" data-nav-link>Live Recommendation System</a>
 			  </li>
 
 			  <li class="navbar-item">
@@ -1248,7 +1248,7 @@
 			<span class="line line-3"></span>
 		  </button>
 
-		  <a href="{% url 'login' %}" class="btn btn-outline">View profile</a>
+		  <a href="{% url 'edit_profile' %}" class="btn btn-outline">View profile</a>
 
 		</div>
 	  </header>
@@ -1282,14 +1282,14 @@
 					<i class='bx bxs-group' ></i>
 					<span class="text">
 						<h3>{{ userdeets.stock_value }}</h3>
-						<p>Stocks Exchanged</p>
+						<p>Portfolio</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-dollar-circle' ></i>
 					<span class="text">
 						<h3>{{ userdeets.profit }}</h3>
-						<p>Profit</p>
+						<p>Total Profit</p>
 					</span>
 				</li>
 
@@ -1361,28 +1361,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="todo">
-					<div class="head">
-						<h3>Recommendation</h3>
-					</div>
-					<ul class="todo-list">
-						<li class="completed">
-							<p>Adobe</p>
-						</li>
-						<li class="completed">
-							<p>Goldman Sachs</p>
-						</li>
-						<li class="not-completed">
-							<p>Atlassian</p>
-						</li>
-						<li class="completed">
-							<p>DE Shaw</p>
-						</li>
-						<li class="not-completed">
-							<p>Microsoft</p>
-						</li>
-					</ul>
-				</div>
+
 			</div>
 
 			<ul class="box-info">

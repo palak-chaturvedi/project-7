@@ -99,9 +99,18 @@ def trade(request,stockname):
             if user.cash < cost:
                 # raise an error if not enough cash
                 messages.error(request, 'Not enough cash to make the trade.')
-                return render(request, 'trade.html')
+                data = get_quote_table(stockname)
+                ctxt = {
+                    'sym': stockname,
+                    'open': data['Open']
+                }
+                return HttpResponse(f"You do not have enough cash to make the trade..You have Rs {user.cash} and cost is Rs {cost}")
+
+                return render(request, 'trade2.html', ctxt)
+                # return render(request, 'trade2.html')
             else:
                 # deduct cost from user's cash
+
                 user.cash -= decimal.Decimal(cost)
                 # update user's portfolio
                 # user.stocks.update_or_create(symbol=symbol, defaults={'shares': shares})
@@ -113,20 +122,31 @@ def trade(request,stockname):
                 updated_shares = int(shares) + prev_share
 
 
+
                 obj, created = Stock.objects.update_or_create(username = request.user.username,
                                     symbol=symbol,defaults={'no_of_shares': updated_shares},
                                 )
                 obj.save()
 
 
+
         else:
             # trade type is sell
             # retrieve the stock from the user's portfolio
             # check if user has enough shares to sell
+            print("Preeeev",prev_share)
             if prev_share < int(shares):
                 # raise an error if not enough shares
-                messages.error(request, 'Not enough shares to sell.')
-                return render(request, 'trade.html')
+                messages.error(request, f"You do not have enough stocks to sell.You have {prev_share} shares")
+                messages.get_messages(request).used = True
+                print(prev_share)
+                data = get_quote_table(stockname)
+                ctxt = {
+                    'sym': stockname,
+                    'open': data['Open']
+                }
+                return HttpResponse(f"You do not have enough stocks to sell.You have {prev_share} shares of {stockname}")
+                # return render(request, 'trade2.html', ctxt)
             else:
                 # update the user's portfolio
                 data = get_quote_table(symbol)

@@ -204,11 +204,11 @@
         }
     };
 
-    Highcharts.setOptions(Highcharts.theme);
+    // Highcharts.setOptions(Highcharts.theme);
 
     // Create the chart
-    
-    Highcharts.getJSON('https://api.npoint.io/b1a8fe44aefedfa3fea5', function (data) {
+
+    Highcharts.getJSON('https://api.npoint.io/25f2b0de416d0be161e1', function (data) {
         // console.log(data);
     // split the data set into ohlc and volume
     var ohlc = [],
@@ -249,7 +249,7 @@
         },
 
         title: {
-        text: 'WMT Historical'
+        text: 'MSFT Historical'
         },
 
         yAxis: [{
@@ -258,7 +258,7 @@
             x: -3
         },
         title: {
-            text: 'WMT'
+            text: 'MSFT'
         },
         height: '60%',
         lineWidth: 2,
@@ -285,7 +285,7 @@
 
         series: [{
         type: 'candlestick',
-        name: 'WMT',
+        name: 'MSFT',
         data: ohlc,
         dataGrouping: {
             units: groupingUnits
