@@ -6,7 +6,7 @@ from .forms import SignUpForm, EditProfileForm
 from simulator.models import UserDetails
 # Create your views here.
 def home(request): 
-	return render(request, 'homepage/home.html', {})
+	return render(request, 'home.html')
 
 def login_user (request):
 	if request.method == 'POST': #if someone fills out form , Post it 

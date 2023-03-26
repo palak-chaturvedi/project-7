@@ -76,12 +76,12 @@ def predict_up(data,symb):
         return result
     else:
 
-        if os.path.exists(f"{symb}.csv"):
-            sp500 = pd.read_csv(f"{symb}.csv", index_col=0)
+        if os.path.exists(f"prediction/SP/{symb}.csv"):
+            sp500 = pd.read_csv(f"prediction/SP/{symb}.csv", index_col=0)
         else:
             sp500 = yf.Ticker(symb)
             sp500 = sp500.history(period="max")
-            sp500.to_csv(f"{symb}.csv")
+            sp500.to_csv(f"prediction/SP/{symb}.csv")
 
         sp500.index = pd.to_datetime(sp500.index)
         # print(sp500)
