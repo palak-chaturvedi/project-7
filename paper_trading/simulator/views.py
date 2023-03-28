@@ -50,10 +50,7 @@ def dashboard(request):
         'userdeets':userdeets
     }
     return render(request, 'dashboard.html', context)
-#
-#
-#
-#
+
 @login_required(login_url = 'login')
 def trade(request,stockname):
 

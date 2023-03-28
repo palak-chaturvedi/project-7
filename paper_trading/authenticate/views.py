@@ -1,3 +1,7 @@
+# It contains all the functions that are required to login , register, edit and logout
+# a user and all the similar functionalities.
+# Every page renders a template on GET request and gets the form value and performs function on POST request
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
@@ -35,7 +39,9 @@ def register_user(request):
 			form.save()
 			username = form.cleaned_data['username']
 			password = form.cleaned_data['password1']
+			#User is authenticated and user is created in the USERDETAILS model.
 			user = authenticate(username=username, password=password)
+
 			user2 = UserDetails.objects.create(username = username)
 			login(request,user)
 			user2.save()

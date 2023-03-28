@@ -10,19 +10,3 @@ def HomePage(request):
     return render(request, "home.html")
 
 
-def About_us(request):
-    return HttpResponse("Terms and conditions")
-
-
-def Contact_us(request):
-    return HttpResponse("Terms and conditions")
-
-
-def help(request):
-    return HttpResponse("Terms and conditions")
-
-
-def tnc(request):
-    return HttpResponse("Terms and conditions")
-
-

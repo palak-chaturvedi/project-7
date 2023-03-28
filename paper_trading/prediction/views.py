@@ -14,24 +14,18 @@ import requests
 import pandas as pd
 import plotly
 
-
+# Strategy class to show whether to buy or sell a stock. Th returns a dataframe of 0 and 1 after call.
 class Strategy:
     def __init__(self, df):
-        # self.script = script
-        # self.script_data = ScriptData()
-        # self.script_data.fetch_intraday_data(self.script)
-        # self.script_data.convert_intraday_data(self.script)
+
         self.close_data = df['Close']
         self.df=df
-        # print(self.close_data)
-        # self.df = self.script_data[self.script]
+
 
     def indicator1(self):
         self.df['indicator'] = self.close_data.rolling(window=10).mean()
         self.indicator_data = self.df['indicator']
 
-        # print(self.indicator_data)
-        #
 
     def generate_signals(self):
         self.indicator1()
@@ -54,7 +48,7 @@ class Strategy:
         self.df['signal'] = signals
         return self.df[self.df['signal'] != 'NO_SIGNAL']
 
-
+#get data of a particular stockname using yahoo finance API.
 
 def get_data(symbol,period='1d'):
     ticker = yf.Ticker(symbol)
@@ -62,14 +56,14 @@ def get_data(symbol,period='1d'):
     # print(todays_data)
     data = [todays_data['Close'][0],todays_data['Volume'][0],todays_data["Open"][0],todays_data["High"][0],todays_data['Low'][0]]
     return data
+
+# predict the future condition of stock market using a model
 def predict_up(data,symb):
     data = [data]
 
     if os.path.exists(f"prediction/models/{symb}.sav"):
         predictors = ["Close", "Volume", "Open", "High", "Low"]
         df = pd.DataFrame(data, columns=predictors)
-        # print(df)
-        # print("HEleeeeeee")
 
         loaded_model = pickle.load(open(f"prediction/models/{symb}.sav", 'rb'))
         result = loaded_model.predict(df)

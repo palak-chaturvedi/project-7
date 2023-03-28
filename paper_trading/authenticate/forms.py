@@ -2,10 +2,10 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django import forms
 
+#Created Forms for the Edit Profile and Sign Up window.
 
 
-
-
+#User is created with email,name and password
 class EditProfileForm(UserChangeForm):
 	
 	password = forms.CharField(label="", widget=forms.TextInput(attrs={'type':'hidden'}))

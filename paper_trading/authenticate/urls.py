@@ -1,3 +1,6 @@
+#This page contains the URL for all the pages authentication related pages all the function names are imported from view file of the authentication window.
+
+
 from django.urls import path
 from . import views
 
